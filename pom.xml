@@ -65,6 +65,7 @@
                 <configuration>
                     <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
                 </configuration>
+                <inherited>false</inherited>
             </plugin>
             <plugin>
                 <groupId>com.github.github</groupId>
@@ -89,6 +90,7 @@
                         <phase>deploy</phase>
                     </execution>
                 </executions>
+                <inherited>false</inherited>
             </plugin>
         </plugins>
     </build>
