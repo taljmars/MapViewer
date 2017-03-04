@@ -1,6 +1,7 @@
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
+MapViewer.iml
 
 # Folder config file
 Desktop.ini
@@ -16,6 +17,9 @@ $RECYCLE.BIN/
 
 #Java
 bin
+target
+CMpub
+Cache
 
 # Windows shortcuts
 *.lnk
