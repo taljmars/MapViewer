@@ -104,7 +104,16 @@
     </dependencies>
 
     <build>
+        <outputDirectory>../${build.output}/classes/</outputDirectory>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <outputDirectory>../${build.output}/jars</outputDirectory>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -116,7 +125,7 @@
                             <mainClass>viewerConsole.Main</mainClass>
                         </manifest>
                     </archive>
-                    <outputDirectory>${build.output}/jars</outputDirectory>
+                    <outputDirectory>../${build.output}/jars</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>
