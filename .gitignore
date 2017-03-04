@@ -1,7 +1,6 @@
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
-MapViewer.iml
 
 # Folder config file
 Desktop.ini
@@ -20,6 +19,8 @@ bin
 target
 CMpub
 Cache
+.idea
+*.iml
 
 # Windows shortcuts
 *.lnk
