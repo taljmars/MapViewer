@@ -25,8 +25,8 @@ import java.util.ArrayList;
 
 import gui.is.interfaces.mapObjects.MapLine;
 import javafx.scene.paint.Color;
-import tools.geoTools.Coordinate;
-import tools.geoTools.GeoTools;
+import geoTools.Coordinate;
+import geoTools.GeoTools;
 
 /**
  *

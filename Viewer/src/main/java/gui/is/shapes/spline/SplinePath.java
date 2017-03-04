@@ -3,7 +3,7 @@ package gui.is.shapes.spline;
 import java.util.ArrayList;
 import java.util.List;
 
-import tools.geoTools.Coordinate;
+import geoTools.Coordinate;
 
 /**
  * This class contains functions used to generate a spline path.

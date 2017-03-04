@@ -1,4 +1,4 @@
-package tester;
+package viewerConsole;
 
 import java.net.URL;
 import java.util.ResourceBundle;

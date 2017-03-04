@@ -1,7 +1,7 @@
 package gui.is.mapTileSources;
 
 import gui.core.mapTileControl.TileXY;
-import tools.geoTools.Coordinate;
+import geoTools.Coordinate;
 
 import java.awt.Point;
 

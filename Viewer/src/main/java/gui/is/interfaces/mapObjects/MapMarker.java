@@ -24,7 +24,7 @@ package gui.is.interfaces.mapObjects;
 import java.awt.Point;
 
 import javafx.scene.Group;
-import tools.geoTools.Coordinate;
+import geoTools.Coordinate;
 
 public interface MapMarker extends MapObject {
 

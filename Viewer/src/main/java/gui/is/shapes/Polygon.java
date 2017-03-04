@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import tools.geoTools.Coordinate;
-import tools.geoTools.GeoTools;
-import tools.geoTools.PolygonInt;
+import geoTools.Coordinate;
+import geoTools.GeoTools;
+import geoTools.PolygonInt;
 
 public class Polygon implements PolygonInt {
 

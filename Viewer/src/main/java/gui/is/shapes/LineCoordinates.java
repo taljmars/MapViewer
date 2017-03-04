@@ -1,7 +1,7 @@
 package gui.is.shapes;
 
-import tools.geoTools.Coordinate;
-import tools.geoTools.GeoTools;
+import geoTools.Coordinate;
+import geoTools.GeoTools;
 
 public class LineCoordinates {
 	private final Coordinate start;

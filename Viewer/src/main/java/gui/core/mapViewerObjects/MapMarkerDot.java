@@ -10,7 +10,7 @@ import javafx.scene.paint.RadialGradientBuilder;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.CircleBuilder;
-import tools.geoTools.Coordinate;
+import geoTools.Coordinate;
 
 /**
  * A simple implementation of the {@link MapMarker} interface. Each map marker

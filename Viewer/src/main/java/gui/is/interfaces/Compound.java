@@ -1,6 +1,6 @@
 package gui.is.interfaces;
 
-import tools.geoTools.Coordinate;
+import geoTools.Coordinate;
 
 public interface Compound {
 	

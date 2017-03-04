@@ -26,7 +26,7 @@ import java.util.List;
 import gui.core.mapViewer.ViewMap;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
-import tools.geoTools.Coordinate;
+import geoTools.Coordinate;
 
 public interface MapPolygon extends MapObject {
     

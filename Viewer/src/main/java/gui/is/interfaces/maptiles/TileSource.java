@@ -8,7 +8,7 @@ import java.util.Map;
 
 import gui.core.mapTileControl.MapTile;
 import gui.core.mapTileControl.TileXY;
-import tools.geoTools.Coordinate;
+import geoTools.Coordinate;
 
 /**
  *

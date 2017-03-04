@@ -23,7 +23,7 @@ package gui.is.interfaces.mapObjects;
 
 import gui.core.mapViewer.ViewMap;
 import javafx.scene.Group;
-import tools.geoTools.Coordinate;
+import geoTools.Coordinate;
 
 public interface MapLine extends MapObject {
 

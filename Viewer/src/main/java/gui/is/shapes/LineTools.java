@@ -3,9 +3,9 @@ package gui.is.shapes;
 import java.util.ArrayList;
 import java.util.List;
 
-import tools.geoTools.CoordBounds;
-import tools.geoTools.Coordinate;
-import tools.geoTools.GeoTools;
+import geoTools.CoordBounds;
+import geoTools.Coordinate;
+import geoTools.GeoTools;
 
 public class LineTools {
 

@@ -3,7 +3,7 @@ package gui.is.mapTileSources;
 import gui.core.mapTileControl.MapTile;
 import gui.core.mapTileControl.TileXY;
 import gui.is.interfaces.maptiles.TileSource;
-import tools.geoTools.Coordinate;
+import geoTools.Coordinate;
 
 import java.awt.Point;
 import java.io.IOException;

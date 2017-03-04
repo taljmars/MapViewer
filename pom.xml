@@ -12,6 +12,7 @@
     <modules>
         <module>Viewer</module>
         <module>GeoTools</module>
+        <module>ViewerConsole</module>
     </modules>
 
     <properties>

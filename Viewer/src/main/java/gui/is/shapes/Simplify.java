@@ -3,7 +3,7 @@ package gui.is.shapes;
 import java.util.ArrayList;
 import java.util.List;
 
-import tools.geoTools.Coordinate;
+import geoTools.Coordinate;
 
 /**
  * Based on the Ramer–Douglas–Peucker algorithm algorithm
