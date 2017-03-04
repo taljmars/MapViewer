@@ -1,6 +1,6 @@
-package main.java.gui.core.mapTileSources;
+package gui.core.mapTileSources;
 
-import main.java.gui.is.mapTileSources.AbstractOsmTileSource;
+import gui.is.mapTileSources.AbstractOsmTileSource;
 
 public class OsmIntelMapTileSource extends AbstractOsmTileSource {
 

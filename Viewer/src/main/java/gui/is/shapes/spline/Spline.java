@@ -1,4 +1,4 @@
-package main.java.gui.is.shapes.spline;
+package gui.is.shapes.spline;
 
 import java.util.ArrayList;
 import java.util.List;

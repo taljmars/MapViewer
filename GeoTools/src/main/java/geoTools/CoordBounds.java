@@ -1,4 +1,4 @@
-package tools.geoTools;
+package geoTools;
 
 import java.util.List;
 

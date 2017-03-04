@@ -19,7 +19,7 @@
 //  For more information, please email jsmith.carlsbad@gmail.com
 //    
 //==============================================================================
-package main.java.gui.core.mapTileControl;
+package gui.core.mapTileControl;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -27,13 +27,13 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 import javax.imageio.ImageIO;
-import main.java.gui.is.interfaces.maptiles.TileSource;
+import gui.is.interfaces.maptiles.TileSource;
 import javafx.animation.AnimationTimer;
 import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import main.java.os_utilities.Environment;
+import os_utilities.Environment;
 
 public class MapTile {
 

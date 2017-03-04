@@ -1,5 +1,5 @@
 // License: GPL. For details, see Readme.txt file.
-package main.java.gui.is.mapTileSources;
+package gui.is.mapTileSources;
 
 public class AbstractMapQuestTileSource extends AbstractOsmTileSource {
 

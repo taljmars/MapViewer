@@ -1,8 +1,8 @@
-package main.java.gui.core.mapViewerObjects;
+package gui.core.mapViewerObjects;
 
 import java.awt.Point;
 
-import main.java.gui.is.interfaces.mapObjects.MapMarker;
+import gui.is.interfaces.mapObjects.MapMarker;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;

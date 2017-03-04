@@ -19,14 +19,14 @@
 //  For more information, please email jsmith.carlsbad@gmail.com
 //    
 //==============================================================================
-package main.java.gui.core.mapViewerObjects;
+package gui.core.mapViewerObjects;
 
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.gui.core.mapViewer.ViewMap;
-import main.java.gui.is.interfaces.mapObjects.MapLine;
+import gui.core.mapViewer.ViewMap;
+import gui.is.interfaces.mapObjects.MapLine;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;

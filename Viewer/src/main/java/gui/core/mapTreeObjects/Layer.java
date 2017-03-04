@@ -1,4 +1,4 @@
-package main.java.gui.core.mapTreeObjects;
+package gui.core.mapTreeObjects;
 
 public abstract class Layer {
 

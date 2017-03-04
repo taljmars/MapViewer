@@ -1,7 +1,7 @@
-package main.java.gui.core.mapTileControl;
+package gui.core.mapTileControl;
 
-import main.java.gui.is.interfaces.maptiles.MapTileCache;
-import main.java.gui.is.interfaces.maptiles.TileSource;
+import gui.is.interfaces.maptiles.MapTileCache;
+import gui.is.interfaces.maptiles.TileSource;
 
 public class TileController {
 	

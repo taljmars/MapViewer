@@ -1,4 +1,4 @@
-package main.java.gui.is.interfaces.mapObjects;
+package gui.is.interfaces.mapObjects;
 
 public interface MapObject {
 	

@@ -1,5 +1,5 @@
 // License: GPL. For details, see Readme.txt file.
-package main.java.gui.is.mapTileSources;
+package gui.is.mapTileSources;
 
 import java.util.Map;
 import java.util.Set;

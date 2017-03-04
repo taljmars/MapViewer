@@ -1,4 +1,4 @@
-package tools.geoTools;
+package geoTools;
 
 public class MathUtil {
 

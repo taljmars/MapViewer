@@ -1,6 +1,6 @@
-package main.java.gui.core.mapTree.internal;
+package gui.core.mapTree.internal;
 
-import main.java.gui.core.mapTreeObjects.Layer;
+import gui.core.mapTreeObjects.Layer;
 import javafx.scene.control.TreeItem;
 
 public class LayeredCheckBoxTreeCellEditorConvertor implements TreeCellEditorConvertor<Layer>{

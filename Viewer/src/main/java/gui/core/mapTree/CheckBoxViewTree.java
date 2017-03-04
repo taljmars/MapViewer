@@ -1,13 +1,13 @@
-package main.java.gui.core.mapTree;
+package gui.core.mapTree;
 
 import javax.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 
-import main.java.gui.core.mapTree.internal.CheckBoxTreeCellEditor;
-import main.java.gui.core.mapTree.internal.LayeredCheckBoxTreeCellEditorConvertor;
-import main.java.gui.core.mapTree.internal.TreeCellEditorConvertor;
-import main.java.gui.core.mapTreeObjects.Layer;
-import main.java.gui.core.mapTreeObjects.LayerGroup;
+import gui.core.mapTree.internal.CheckBoxTreeCellEditor;
+import gui.core.mapTree.internal.LayeredCheckBoxTreeCellEditorConvertor;
+import gui.core.mapTree.internal.TreeCellEditorConvertor;
+import gui.core.mapTreeObjects.Layer;
+import gui.core.mapTreeObjects.LayerGroup;
 import javafx.scene.control.CheckBoxTreeItem;
 import javafx.scene.control.TreeItem;
 

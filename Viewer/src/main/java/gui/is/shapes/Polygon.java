@@ -1,4 +1,4 @@
-package main.java.gui.is.shapes;
+package gui.is.shapes;
 
 import java.util.ArrayList;
 import java.util.Collections;

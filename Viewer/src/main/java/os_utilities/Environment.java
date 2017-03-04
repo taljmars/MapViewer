@@ -1,4 +1,4 @@
-package main.java.os_utilities;
+package os_utilities;
 
 import java.io.File;
 import java.net.URISyntaxException;

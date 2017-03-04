@@ -1,4 +1,4 @@
-package main.java.gui.is.interfaces;
+package gui.is.interfaces;
 
 import tools.geoTools.Coordinate;
 

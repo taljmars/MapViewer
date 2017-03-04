@@ -1,4 +1,4 @@
-package main.java.tester;
+package tester;
 
 import javafx.application.Application;
 import javafx.scene.Parent;

@@ -1,6 +1,6 @@
-package main.java.gui.is.mapTileSources;
+package gui.is.mapTileSources;
 
-import main.java.gui.core.mapTileControl.TileXY;
+import gui.core.mapTileControl.TileXY;
 import tools.geoTools.Coordinate;
 
 import java.awt.Point;

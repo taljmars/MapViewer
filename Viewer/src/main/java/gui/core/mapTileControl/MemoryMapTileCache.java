@@ -1,12 +1,12 @@
 // License: GPL. For details, see Readme.txt file.
-package main.java.gui.core.mapTileControl;
+package gui.core.mapTileControl;
 
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
-import main.java.gui.is.interfaces.maptiles.MapTileCache;
-import main.java.gui.is.interfaces.maptiles.TileSource;
+import gui.is.interfaces.maptiles.MapTileCache;
+import gui.is.interfaces.maptiles.TileSource;
 
 /**
  * {@link MapTileCache} implementation that stores all {@link MapTile} objects in

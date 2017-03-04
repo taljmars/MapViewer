@@ -19,15 +19,15 @@
 //  For more information, please email jsmith.carlsbad@gmail.com
 //    
 //==============================================================================
-package main.java.gui.core.mapViewerObjects;
+package gui.core.mapViewerObjects;
 
 
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.gui.core.mapViewer.ViewMap;
-import main.java.gui.is.interfaces.mapObjects.MapPolygon;
+import gui.core.mapViewer.ViewMap;
+import gui.is.interfaces.mapObjects.MapPolygon;
 import javafx.scene.Group;
 import javafx.scene.effect.Bloom;
 import javafx.scene.paint.Color;

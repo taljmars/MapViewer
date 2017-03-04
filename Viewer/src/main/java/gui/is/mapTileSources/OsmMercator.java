@@ -1,5 +1,5 @@
 // License: GPL. For details, see Readme.txt file.
-package main.java.gui.is.mapTileSources;
+package gui.is.mapTileSources;
 
 /**
  * This class implements the Mercator Projection as it is used by OpenStreetMap

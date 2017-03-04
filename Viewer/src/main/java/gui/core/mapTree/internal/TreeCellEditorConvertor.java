@@ -1,4 +1,4 @@
-package main.java.gui.core.mapTree.internal;
+package gui.core.mapTree.internal;
 
 import javafx.scene.control.TreeItem;
 

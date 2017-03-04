@@ -1,4 +1,4 @@
-package main.java.tester;
+package tester;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -8,8 +8,8 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import main.java.gui.core.mapTree.CheckBoxViewTree;
-import main.java.gui.core.mapViewer.LayeredViewMap;
+import gui.core.mapTree.CheckBoxViewTree;
+import gui.core.mapViewer.LayeredViewMap;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;

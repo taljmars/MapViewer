@@ -1,13 +1,13 @@
 // License: GPL. For details, see Readme.txt file.
-package main.java.gui.is.interfaces.maptiles;
+package gui.is.interfaces.maptiles;
 
 import java.awt.Point;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import main.java.gui.core.mapTileControl.MapTile;
-import main.java.gui.core.mapTileControl.TileXY;
+import gui.core.mapTileControl.MapTile;
+import gui.core.mapTileControl.TileXY;
 import tools.geoTools.Coordinate;
 
 /**

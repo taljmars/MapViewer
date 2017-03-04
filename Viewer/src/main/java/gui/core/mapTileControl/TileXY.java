@@ -1,5 +1,5 @@
 // License: GPL. For details, see Readme.txt file.
-package main.java.gui.core.mapTileControl;
+package gui.core.mapTileControl;
 
 /**
  * @author w

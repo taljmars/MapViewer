@@ -19,7 +19,7 @@
 //  For more information, please email jsmith.carlsbad@gmail.com
 //    
 //==============================================================================
-package main.java.gui.core.mapViewer;
+package gui.core.mapViewer;
 
 import java.awt.Point;
 import java.util.Arrays;
@@ -30,19 +30,19 @@ import java.util.Vector;
 
 import javax.annotation.PostConstruct;
 
-import main.java.gui.core.mapTileControl.MapTile;
-import main.java.gui.core.mapTileControl.TileController;
-import main.java.gui.core.mapTileSources.BingAerialTileSource;
-import main.java.gui.core.mapTileSources.OsmCartoMapTileSource;
-import main.java.gui.core.mapTileSources.OsmCycleMapTileSource;
-import main.java.gui.core.mapTileSources.OsmDarkMapTileSource;
-import main.java.gui.core.mapTileSources.OsmHotMapTileSource;
-import main.java.gui.core.mapTileSources.OsmIntelMapTileSource;
-import main.java.gui.is.interfaces.mapObjects.MapLine;
-import main.java.gui.is.interfaces.mapObjects.MapMarker;
-import main.java.gui.is.interfaces.mapObjects.MapPolygon;
-import main.java.gui.is.interfaces.maptiles.TileSource;
-import main.java.gui.is.mapTileSources.OsmMercator;
+import gui.core.mapTileControl.MapTile;
+import gui.core.mapTileControl.TileController;
+import gui.core.mapTileSources.BingAerialTileSource;
+import gui.core.mapTileSources.OsmCartoMapTileSource;
+import gui.core.mapTileSources.OsmCycleMapTileSource;
+import gui.core.mapTileSources.OsmDarkMapTileSource;
+import gui.core.mapTileSources.OsmHotMapTileSource;
+import gui.core.mapTileSources.OsmIntelMapTileSource;
+import gui.is.interfaces.mapObjects.MapLine;
+import gui.is.interfaces.mapObjects.MapMarker;
+import gui.is.interfaces.mapObjects.MapPolygon;
+import gui.is.interfaces.maptiles.TileSource;
+import gui.is.mapTileSources.OsmMercator;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Insets;
