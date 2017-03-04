@@ -66,7 +66,7 @@ public class MapTile {
             this.ImgView.setImage( delayed_img );
             this.ImgView.setFitWidth(256);
             this.ImgView.setFitHeight(256);
-            this.loadImage(this.tileLocation, true);
+            this.loadImage(this.tileLocation, false);
             
         } else {
         	System.err.println("Unknown Tile [" +  this.tileLocation + "]");

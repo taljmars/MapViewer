@@ -7,10 +7,10 @@ import java.util.Date;
 
 public class Environment {
 	
-	private static final String LOG_MAIN_DIRECTORY = "Logs";
+	private static final String LOG_MAIN_DIRECTORY = "logs";
 	private static final String LOG_ENTRY_PREFIX = "quadlog_";
 	
-	private static final String CACHE_MAIN_DIRECTORY = "Cache";
+	private static final String CACHE_MAIN_DIRECTORY = "cache";
 	
 	public static final String DIR_SEPERATOR = "//";
 	
@@ -23,8 +23,10 @@ public class Environment {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM_dd_hhmmss");
 		String dateAsString = simpleDateFormat.format(dateTimestemp);
 		file = new File(file.toString() + DIR_SEPERATOR + LOG_MAIN_DIRECTORY + DIR_SEPERATOR + LOG_ENTRY_PREFIX + dateAsString);
-		if (!file.exists())
+		if (!file.exists()) {
+			System.err.println("Creating log directory '" + file.toString() + "'");
 			file.mkdirs();
+		}
 		
 		return file;
 	}
@@ -33,8 +35,10 @@ public class Environment {
 		
 		File file = getRunningEnvBaseDirectory();
 		file = new File(file.toString() + DIR_SEPERATOR + CACHE_MAIN_DIRECTORY);
-		if (!file.exists())
+		if (!file.exists()) {
+			System.err.println("Creating cache directory '" + file.toString() + "'");
 			file.mkdirs();
+		}
 		
 		return file;
 	}

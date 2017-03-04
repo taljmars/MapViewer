@@ -34,7 +34,7 @@ public class MapView extends Pane implements ChangeListener<Number>, Initializab
 	@PostConstruct
 	private void init() {
 		if (called++ > 1)
-			throw new RuntimeException("Not a Singletone");
+			throw new RuntimeException("Not a Singleton");
 	}
 	
 	@Override
