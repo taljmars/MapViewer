@@ -11,7 +11,8 @@ import gui.core.mapTreeObjects.LayerGroup;
 import javafx.scene.control.CheckBoxTreeItem;
 import javafx.scene.control.TreeItem;
 
-@Component("tree")
+//@Component("tree")
+@Component
 public class CheckBoxViewTree extends LayeredViewTree<CheckBoxTreeItem<Layer>> {
 	
 	private LayerGroup generalGroup;
@@ -27,7 +28,7 @@ public class CheckBoxViewTree extends LayeredViewTree<CheckBoxTreeItem<Layer>> {
 	@PostConstruct
 	private void init() {
 		if (called++ > 1)
-			throw new RuntimeException("Not a Singletone");
+			throw new RuntimeException("Not a Singleton");
 		
 		LayerGroup rootLayer = new LayerGroup("Layers");
 		map.setRootLayer(rootLayer);

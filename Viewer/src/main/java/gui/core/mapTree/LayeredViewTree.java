@@ -2,6 +2,7 @@ package gui.core.mapTree;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 
 import gui.core.mapTreeObjects.Layer;
@@ -15,7 +16,8 @@ public abstract class LayeredViewTree<S extends TreeItem<Layer>> extends ViewTre
 	@SuppressWarnings("rawtypes")
 	private Class<? extends TreeItem> clazz;
 	
-	@Resource(name = "map")
+	//@Resource(name = "map")
+	@Autowired
 	protected LayeredViewMap map;
 
 	public LayeredViewTree(S instance) {

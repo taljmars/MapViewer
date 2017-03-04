@@ -26,6 +26,7 @@ import java.util.Iterator;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -47,10 +48,12 @@ import javafx.scene.layout.VBox;
  * @author taljmars
  */
 @ComponentScan("gui.core.mapTree")
-@Component("map")
+//@Component("map")
+@Component
 public class LayeredViewMap extends ViewMap {
 	
-	@Resource(name = "tree")
+	//@Resource(name = "tree")
+	@Autowired
 	private CheckBoxViewTree tree;
     
     protected Button btnEditSaveMode;

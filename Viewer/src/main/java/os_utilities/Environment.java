@@ -1,10 +1,13 @@
 package os_utilities;
 
+import org.springframework.stereotype.Component;
+
 import java.io.File;
 import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@Component
 public class Environment {
 	
 	private static final String LOG_MAIN_DIRECTORY = "logs";
