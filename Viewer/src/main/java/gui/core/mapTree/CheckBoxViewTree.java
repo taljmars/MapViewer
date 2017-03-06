@@ -11,7 +11,6 @@ import gui.core.mapTreeObjects.LayerGroup;
 import javafx.scene.control.CheckBoxTreeItem;
 import javafx.scene.control.TreeItem;
 
-//@Component("tree")
 @Component
 public class CheckBoxViewTree extends LayeredViewTree<CheckBoxTreeItem<Layer>> {
 	
@@ -31,7 +30,7 @@ public class CheckBoxViewTree extends LayeredViewTree<CheckBoxTreeItem<Layer>> {
 			throw new RuntimeException("Not a Singleton");
 		
 		LayerGroup rootLayer = new LayerGroup("Layers");
-		map.setRootLayer(rootLayer);
+		getLayeredViewMap().setRootLayer(rootLayer);
 		CheckBoxTreeItem<Layer> rootItem = new CheckBoxTreeItem<Layer> (rootLayer);
 		rootItem.setExpanded(true);
 		
@@ -52,20 +51,20 @@ public class CheckBoxViewTree extends LayeredViewTree<CheckBoxTreeItem<Layer>> {
 				(event) -> {
 					CheckBoxTreeItem<Layer> cbItem = (CheckBoxTreeItem<Layer>) event.getTreeItem();
 					if (!cbItem.isIndeterminate())
-						map.setLayerVisibie(cbItem.getValue(), cbItem.isSelected());
+						getLayeredViewMap().setLayerVisibie(cbItem.getValue(), cbItem.isSelected());
 				}
 		);
 	}
 
 	public void addLayer(Layer layer) {
 		CheckBoxTreeItem<Layer> ti = addTreeNode(layer, generalGroup);
-		map.addLayer(layer, generalGroup);
+		getLayeredViewMap().addLayer(layer, generalGroup);
 		addSelectionHandler(ti);
 	}
 
 	public void removeLayer(Layer layer) {
 		removeFromTreeGroup(layer);
-		map.removeLayer(layer);
+		getLayeredViewMap().removeLayer(layer);
 	}
 
 	@Override

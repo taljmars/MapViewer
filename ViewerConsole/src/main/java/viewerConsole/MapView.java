@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import javax.annotation.PostConstruct;
 
+import gui.core.mapTree.LayeredViewTree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,13 +18,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.Pane;
 
-@Component("MapView")
+@Component
 public class MapView extends Pane implements ChangeListener<Number>, Initializable {
 
-	@Autowired
-	private CheckBoxViewTree tree;
-	
-	@Autowired
+	private LayeredViewTree tree;
 	private LayeredViewMap map;
 	
 	@FXML private SplitPane splitPane;
@@ -35,6 +33,16 @@ public class MapView extends Pane implements ChangeListener<Number>, Initializab
 	private void init() {
 		if (called++ > 1)
 			throw new RuntimeException("Not a Singleton");
+	}
+
+	@Autowired
+	public void setTree(LayeredViewTree tree) {
+		this.tree = tree;
+	}
+
+	@Autowired
+	public void setMap(LayeredViewMap map) {
+		this.map = map;
 	}
 	
 	@Override

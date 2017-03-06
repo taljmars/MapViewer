@@ -1,7 +1,5 @@
 package gui.core.mapTree;
 
-import javax.annotation.Resource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 
@@ -10,23 +8,28 @@ import gui.core.mapTreeObjects.LayerGroup;
 import gui.core.mapViewer.LayeredViewMap;
 import javafx.scene.control.TreeItem;
 
+import javax.annotation.Resource;
+
 @ComponentScan("gui.core.mapViewer")
 public abstract class LayeredViewTree<S extends TreeItem<Layer>> extends ViewTree<Layer> {
 	
 	@SuppressWarnings("rawtypes")
 	private Class<? extends TreeItem> clazz;
-	
-	//@Resource(name = "map")
-	@Autowired
-	protected LayeredViewMap map;
+
+	private LayeredViewMap layeredViewMap;
 
 	public LayeredViewTree(S instance) {
 		super();
 		this.clazz = instance.getClass();
 	}
-	
+
+	public LayeredViewMap getLayeredViewMap() {
+		return layeredViewMap;
+	}
+
+	@Resource(type = LayeredViewMap.class)
 	public void setLayeredViewMap(LayeredViewMap layeredViewMap) {
-		map = layeredViewMap;
+		this.layeredViewMap = layeredViewMap;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -42,7 +45,7 @@ public abstract class LayeredViewTree<S extends TreeItem<Layer>> extends ViewTre
 			newTreeItem.setValue(layer);
 			return (S) super.addTreeNode(newTreeItem, layerGroupTreeitem);
 		} catch (InstantiationException | IllegalAccessException e) {
-			System.err.println("Failed to instanciate Tree item");
+			System.err.println("Failed to instansiate Tree item");
 			return null;
 		}
 	}
@@ -72,7 +75,7 @@ public abstract class LayeredViewTree<S extends TreeItem<Layer>> extends ViewTre
 	@Override
 	protected void handleRemoveTreeItem(TreeItem<Layer> treeItem) {
 		Layer layer = treeItem.getValue();
-		map.removeLayer(layer);
+		layeredViewMap.removeLayer(layer);
 		super.handleRemoveTreeItem(treeItem);
 	}
 }

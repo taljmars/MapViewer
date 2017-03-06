@@ -22,9 +22,8 @@
 package gui.core.mapViewer;
 
 import java.awt.Point;
+import java.lang.annotation.Inherited;
 import java.util.Iterator;
-
-import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -43,18 +42,18 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
+import javax.annotation.Resource;
+
 /**
  *
  * @author taljmars
  */
 @ComponentScan("gui.core.mapTree")
-//@Component("map")
 @Component
-public class LayeredViewMap extends ViewMap {
-	
-	//@Resource(name = "tree")
-	@Autowired
-	private CheckBoxViewTree tree;
+public class LayeredViewMap extends ViewMap
+{
+
+	private CheckBoxViewTree checkBoxViewTree;
     
     protected Button btnEditSaveMode;
     protected Button btnEditCancelMode;
@@ -69,8 +68,17 @@ public class LayeredViewMap extends ViewMap {
     	super();
     	initLayerEditor();
     	
-    	System.out.println("In LayedViewMap Cont");
+    	System.out.println("In LayedViewMap Constructor");
     }
+
+	@Resource(type = CheckBoxViewTree.class)
+	public void setCheckBoxViewTree(CheckBoxViewTree checkBoxViewTree) {
+		this.checkBoxViewTree = checkBoxViewTree;
+	}
+
+	public CheckBoxViewTree getCheckBoxViewTree() {
+		return checkBoxViewTree;
+	}
     
     private void initLayerEditor() {
     	btnEditSaveMode = new Button("Save");
@@ -220,11 +228,11 @@ public class LayeredViewMap extends ViewMap {
 	}
 
 	public void LayerEditorCancel() {
-		tree.refresh();
+		checkBoxViewTree.refresh();
 	}
 
 	public void LayerEditorSave() {
-		tree.refresh();
+		checkBoxViewTree.refresh();
 	}
 
 

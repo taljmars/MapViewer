@@ -173,7 +173,6 @@ public abstract class ViewMap extends Pane {
 
 	public ViewMap() {
 		this( mapTilesSources[0], 0, 0, 400, 400, 11 );
-		System.out.println("In ViewMap Constructor");
 	}
 
 	private ViewMap( TileSource ts, int x, int y, int width, int height, int initial_zoom ) {    
@@ -449,7 +448,6 @@ public abstract class ViewMap extends Pane {
 	 * Calculates the position on the map of a given coordinate
 	 *
 	 * @param marker MapMarker object that define the x,y coordinate
-	 * @param p coordinate
 	 * @return Integer the radius in pixels
 	 */
 	public Double getRadius(MapMarker marker) {       
