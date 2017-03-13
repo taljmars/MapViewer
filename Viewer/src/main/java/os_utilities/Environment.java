@@ -7,32 +7,13 @@ import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@Component
 public class Environment {
-	
-	private static final String LOG_MAIN_DIRECTORY = "logs";
-	private static final String LOG_ENTRY_PREFIX = "quadlog_";
-	
+
 	private static final String CACHE_MAIN_DIRECTORY = "cache";
 	
 	public static final String DIR_SEPERATOR = "//";
-	
-	private static Date dateTimestemp = new Date();
-	
+
 	private static String externalBaseDirectory;
-	
-	public static File getRunningEnvLogDirectory() throws URISyntaxException {
-		File file = getRunningEnvBaseDirectory();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM_dd_hhmmss");
-		String dateAsString = simpleDateFormat.format(dateTimestemp);
-		file = new File(file.toString() + DIR_SEPERATOR + LOG_MAIN_DIRECTORY + DIR_SEPERATOR + LOG_ENTRY_PREFIX + dateAsString);
-		if (!file.exists()) {
-			System.err.println("Creating log directory '" + file.toString() + "'");
-			file.mkdirs();
-		}
-		
-		return file;
-	}
 
 	public static File getRunningEnvCacheDirectory() throws URISyntaxException {
 		
@@ -49,17 +30,12 @@ public class Environment {
 	public static File getRunningEnvBaseDirectory() throws URISyntaxException {
 		if (externalBaseDirectory != null && !externalBaseDirectory.isEmpty())
 			return new File(externalBaseDirectory);
-		
-		File file = new File(Environment.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-		file = new File(file.getParent().toString());
+		String property = "java.io.tmpdir";
+		String externalBaseDirectory = System.getProperty(property);
+		File file = new File(externalBaseDirectory);
 		if (!file.exists())
 			throw new RuntimeException("Running directory wasn't found");
 		
 		return file;
-	}
-	
-	public static void setBaseRunningDirectoryByClass(Class<?> clz) throws URISyntaxException {
-		File file = new File(clz.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-		externalBaseDirectory = file.getParent().toString();
 	}
 }
