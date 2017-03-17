@@ -1,16 +1,15 @@
-package viewerConsole;
+package com.viewerConsole;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javax.annotation.PostConstruct;
 
-import gui.core.mapTree.LayeredViewTree;
+import com.gui.core.mapTree.LayeredViewTree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import gui.core.mapTree.CheckBoxViewTree;
-import gui.core.mapViewer.LayeredViewMap;
+import com.gui.core.mapViewer.LayeredViewMap;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;

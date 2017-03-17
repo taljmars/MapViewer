@@ -1,4 +1,4 @@
-package viewerConsole;
+package com.viewerConsole;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,8 +12,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-@ComponentScan("gui.core.mapTree")
-@ComponentScan("gui.core.mapViewer")
+@ComponentScan("com.gui.core.mapTree")
+@ComponentScan("com.gui.core.mapViewer")
 @Import(MapView.class)
 @Configuration
 public class AppConfig {

@@ -1,4 +1,4 @@
-package viewerConsole;
+package com.viewerConsole;
 
 import javafx.application.Application;
 import javafx.scene.Parent;
@@ -9,7 +9,7 @@ public class Main extends Application  {
 	
 	@Override
     public void start(Stage primaryStage) {
-        Parent root = (Parent) AppConfig.loader.load("views/view.fxml");
+        Parent root = (Parent) AppConfig.loader.load("com/views/view.fxml");
 		root.setStyle("-fx-background-color: whitesmoke;");
 		Scene scene = new Scene(root, 650, 550);
         primaryStage.setResizable(false);
