@@ -1,7 +1,7 @@
 // License: GPL. For details, see Readme.txt file.
-package gui.is.interfaces.maptiles;
+package com.gui.is.interfaces.maptiles;
 
-import gui.core.mapTileControl.MapTile;
+import com.gui.core.mapTileControl.MapTile;
 
 /**
  * Implement this interface for creating your custom tile cache for

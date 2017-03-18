@@ -19,12 +19,12 @@
 //  For more information, please email jsmith.carlsbad@gmail.com
 //    
 //==============================================================================
-package gui.is.interfaces.mapObjects;
+package com.gui.is.interfaces.mapObjects;
 
 import java.awt.Point;
 
 import javafx.scene.Group;
-import geoTools.Coordinate;
+import com.geo_tools.Coordinate;
 
 public interface MapMarker extends MapObject {
 

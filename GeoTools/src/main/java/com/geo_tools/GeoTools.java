@@ -1,4 +1,4 @@
-package com.geoTools;
+package com.geo_tools;
 
 import static java.lang.Math.PI;
 import static java.lang.Math.abs;

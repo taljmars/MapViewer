@@ -1,11 +1,11 @@
-package gui.is.shapes;
+package com.gui.is.shapes;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import geoTools.CoordBounds;
-import geoTools.Coordinate;
-import geoTools.GeoTools;
+import com.geo_tools.CoordBounds;
+import com.geo_tools.Coordinate;
+import com.geo_tools.GeoTools;
 
 public class LineTools {
 

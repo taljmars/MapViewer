@@ -1,4 +1,4 @@
-package gui.is.events;
+package com.gui.is.events;
 
 import org.springframework.context.ApplicationEvent;
 

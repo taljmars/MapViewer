@@ -1,4 +1,4 @@
-package gui.core.mapTree;
+package com.gui.core.mapTree;
 
 import java.util.Collections;
 

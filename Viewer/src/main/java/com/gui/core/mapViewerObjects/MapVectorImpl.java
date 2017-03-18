@@ -19,14 +19,14 @@
 //  For more information, please email jsmith.carlsbad@gmail.com
 //    
 //==============================================================================
-package gui.core.mapViewerObjects;
+package com.gui.core.mapViewerObjects;
 
 import java.util.ArrayList;
 
-import gui.is.interfaces.mapObjects.MapLine;
+import com.gui.is.interfaces.mapObjects.MapLine;
 import javafx.scene.paint.Color;
-import geoTools.Coordinate;
-import geoTools.GeoTools;
+import com.geo_tools.Coordinate;
+import com.geo_tools.GeoTools;
 
 /**
  *

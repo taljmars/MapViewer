@@ -1,9 +1,9 @@
-package gui.is.shapes;
+package com.gui.is.shapes;
 
 import java.util.List;
 
-import geoTools.Coordinate;
-import geoTools.GeoTools;
+import com.geo_tools.Coordinate;
+import com.geo_tools.GeoTools;
 
 public class PolylineTools {
 

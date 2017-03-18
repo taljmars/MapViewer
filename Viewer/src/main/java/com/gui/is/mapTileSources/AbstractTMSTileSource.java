@@ -1,9 +1,9 @@
-package gui.is.mapTileSources;
+package com.gui.is.mapTileSources;
 
-import gui.core.mapTileControl.MapTile;
-import gui.core.mapTileControl.TileXY;
-import gui.is.interfaces.maptiles.TileSource;
-import geoTools.Coordinate;
+import com.gui.core.mapTileControl.MapTile;
+import com.gui.core.mapTileControl.TileXY;
+import com.gui.is.interfaces.maptiles.TileSource;
+import com.geo_tools.Coordinate;
 
 import java.awt.Point;
 import java.io.IOException;

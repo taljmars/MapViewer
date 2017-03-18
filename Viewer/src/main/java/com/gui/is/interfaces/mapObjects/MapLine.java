@@ -19,11 +19,11 @@
 //  For more information, please email jsmith.carlsbad@gmail.com
 //    
 //==============================================================================
-package gui.is.interfaces.mapObjects;
+package com.gui.is.interfaces.mapObjects;
 
-import gui.core.mapViewer.ViewMap;
+import com.gui.core.mapViewer.ViewMap;
 import javafx.scene.Group;
-import geoTools.Coordinate;
+import com.geo_tools.Coordinate;
 
 public interface MapLine extends MapObject {
 

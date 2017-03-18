@@ -1,5 +1,5 @@
 // License: GPL. For details, see Readme.txt file.
-package com.geoTools;
+package com.geo_tools;
 
 import java.awt.geom.Point2D;
 import java.io.IOException;

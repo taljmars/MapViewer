@@ -1,7 +1,7 @@
-package gui.core.mapTileSources;
+package com.gui.core.mapTileSources;
 
 import java.io.IOException;
-import gui.is.mapTileSources.AbstractOsmTileSource;
+import com.gui.is.mapTileSources.AbstractOsmTileSource;
 
 public class BingAerialTileSource extends AbstractOsmTileSource {
 

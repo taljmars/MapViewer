@@ -1,9 +1,9 @@
-package gui.is.shapes;
+package com.gui.is.shapes;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import geoTools.Coordinate;
+import com.geo_tools.Coordinate;
 
 /**
  * Based on the Ramer–Douglas–Peucker algorithm algorithm

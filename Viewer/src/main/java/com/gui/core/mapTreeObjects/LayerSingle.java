@@ -1,11 +1,11 @@
-package gui.core.mapTreeObjects;
+package com.gui.core.mapTreeObjects;
 
 import java.util.Vector;
 
-import gui.core.mapViewer.ViewMap;
-import gui.is.interfaces.mapObjects.MapLine;
-import gui.is.interfaces.mapObjects.MapMarker;
-import gui.is.interfaces.mapObjects.MapPolygon;
+import com.gui.core.mapViewer.ViewMap;
+import com.gui.is.interfaces.mapObjects.MapLine;
+import com.gui.is.interfaces.mapObjects.MapMarker;
+import com.gui.is.interfaces.mapObjects.MapPolygon;
 
 public class LayerSingle extends Layer {
 	

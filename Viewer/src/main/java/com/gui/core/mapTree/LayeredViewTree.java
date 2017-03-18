@@ -1,16 +1,15 @@
-package gui.core.mapTree;
+package com.gui.core.mapTree;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 
-import gui.core.mapTreeObjects.Layer;
-import gui.core.mapTreeObjects.LayerGroup;
-import gui.core.mapViewer.LayeredViewMap;
+import com.gui.core.mapTreeObjects.Layer;
+import com.gui.core.mapTreeObjects.LayerGroup;
+import com.gui.core.mapViewer.LayeredViewMap;
 import javafx.scene.control.TreeItem;
 
 import javax.annotation.Resource;
 
-@ComponentScan("gui.core.mapViewer")
+@ComponentScan("com.gui.core.mapViewer")
 public abstract class LayeredViewTree<S extends TreeItem<Layer>> extends ViewTree<Layer> {
 	
 	@SuppressWarnings("rawtypes")

@@ -1,4 +1,4 @@
-package com.viewerConsole;
+package com.viewer_console;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -19,22 +19,20 @@
 //  For more information, please email jsmith.carlsbad@gmail.com
 //    
 //==============================================================================
-package gui.core.mapViewer;
+package com.gui.core.mapViewer;
 
 import java.awt.Point;
-import java.lang.annotation.Inherited;
 import java.util.Iterator;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
-import gui.core.mapTree.CheckBoxViewTree;
-import gui.core.mapTreeObjects.Layer;
-import gui.core.mapTreeObjects.LayerGroup;
-import gui.core.mapViewerObjects.MapMarkerDot;
-import gui.is.events.GuiEvent;
+import com.gui.core.mapTree.CheckBoxViewTree;
+import com.gui.core.mapTreeObjects.Layer;
+import com.gui.core.mapTreeObjects.LayerGroup;
+import com.gui.core.mapViewerObjects.MapMarkerDot;
+import com.gui.is.events.GuiEvent;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
@@ -48,7 +46,7 @@ import javax.annotation.Resource;
  *
  * @author taljmars
  */
-@ComponentScan("gui.core.mapTree")
+@ComponentScan("com.gui.core.mapTree")
 @Component
 public class LayeredViewMap extends ViewMap
 {

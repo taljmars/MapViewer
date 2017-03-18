@@ -1,8 +1,8 @@
-package gui.core.mapViewerObjects;
+package com.gui.core.mapViewerObjects;
 
 import java.awt.Point;
 
-import gui.is.interfaces.mapObjects.MapMarker;
+import com.gui.is.interfaces.mapObjects.MapMarker;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.RadialGradient;
@@ -10,7 +10,7 @@ import javafx.scene.paint.RadialGradientBuilder;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.CircleBuilder;
-import geoTools.Coordinate;
+import com.geo_tools.Coordinate;
 
 /**
  * A simple implementation of the {@link MapMarker} interface. Each map marker

@@ -1,6 +1,6 @@
-package gui.core.mapTree.internal;
+package com.gui.core.mapTree.internal;
 
-import gui.core.mapTree.ViewTree;
+import com.gui.core.mapTree.ViewTree;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ContextMenu;

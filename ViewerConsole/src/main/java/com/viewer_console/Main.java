@@ -1,4 +1,4 @@
-package com.viewerConsole;
+package com.viewer_console;
 
 import javafx.application.Application;
 import javafx.scene.Parent;

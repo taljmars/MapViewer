@@ -19,14 +19,14 @@
 //  For more information, please email jsmith.carlsbad@gmail.com
 //    
 //==============================================================================
-package gui.core.mapViewerObjects;
+package com.gui.core.mapViewerObjects;
 
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-import gui.core.mapViewer.ViewMap;
-import gui.is.interfaces.mapObjects.MapLine;
+import com.gui.core.mapViewer.ViewMap;
+import com.gui.is.interfaces.mapObjects.MapLine;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
@@ -36,7 +36,7 @@ import javafx.scene.shape.Polyline;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeLineJoin;
 import javafx.scene.shape.StrokeType;
-import geoTools.Coordinate;
+import com.geo_tools.Coordinate;
 /**
  *
  * @author smithjel

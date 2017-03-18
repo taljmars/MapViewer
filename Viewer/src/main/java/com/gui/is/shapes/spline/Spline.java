@@ -1,9 +1,9 @@
-package gui.is.shapes.spline;
+package com.gui.is.shapes.spline;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import geoTools.Coordinate;
+import com.geo_tools.Coordinate;
 
 public class Spline {
 

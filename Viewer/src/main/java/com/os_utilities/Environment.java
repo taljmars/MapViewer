@@ -1,11 +1,7 @@
-package os_utilities;
-
-import org.springframework.stereotype.Component;
+package com.os_utilities;
 
 import java.io.File;
 import java.net.URISyntaxException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class Environment {
 

@@ -19,15 +19,15 @@
 //  For more information, please email jsmith.carlsbad@gmail.com
 //    
 //==============================================================================
-package gui.core.mapViewerObjects;
+package com.gui.core.mapViewerObjects;
 
 
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-import gui.core.mapViewer.ViewMap;
-import gui.is.interfaces.mapObjects.MapPolygon;
+import com.gui.core.mapViewer.ViewMap;
+import com.gui.is.interfaces.mapObjects.MapPolygon;
 import javafx.scene.Group;
 import javafx.scene.effect.Bloom;
 import javafx.scene.paint.Color;
@@ -35,8 +35,8 @@ import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.Polyline;
-import geoTools.Coordinate;
-import geoTools.GeoTools;
+import com.geo_tools.Coordinate;
+import com.geo_tools.GeoTools;
 
 /**
  *

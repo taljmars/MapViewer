@@ -19,7 +19,7 @@
 //  For more information, please email jsmith.carlsbad@gmail.com
 //    
 //==============================================================================
-package gui.core.mapTileControl;
+package com.gui.core.mapTileControl;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -27,13 +27,13 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 import javax.imageio.ImageIO;
-import gui.is.interfaces.maptiles.TileSource;
+import com.gui.is.interfaces.maptiles.TileSource;
 import javafx.animation.AnimationTimer;
 import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import os_utilities.Environment;
+import com.os_utilities.Environment;
 
 public class MapTile {
 
@@ -62,7 +62,7 @@ public class MapTile {
 		}
         
         if (this.tileLocation.startsWith("http")) {
-            Image delayed_img = new Image(this.getClass().getResource("/mapImages/hourglass.png").toString());
+            Image delayed_img = new Image(this.getClass().getResource("/com/mapImages/hourglass.png").toString());
             this.ImgView.setImage( delayed_img );
             this.ImgView.setFitWidth(256);
             this.ImgView.setFitHeight(256);
@@ -156,10 +156,10 @@ public class MapTile {
 				if (file.exists())
 	        		loadImage(file.toURI().toString());
 	        	else 
-	        		loadImage(this.getClass().getResource("/mapImages/error.png").toString(), true);
+	        		loadImage(this.getClass().getResource("/com/mapImages/error.png").toString(), true);
 			}
         	catch (URISyntaxException e) {
-        		loadImage(this.getClass().getResource("/mapImages/error.png").toString(), true);
+        		loadImage(this.getClass().getResource("/com/mapImages/error.png").toString(), true);
 				System.err.println("Failed to load tile");
 				e.printStackTrace();
 			}

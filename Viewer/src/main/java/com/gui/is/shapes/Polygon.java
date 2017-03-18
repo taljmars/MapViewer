@@ -1,12 +1,12 @@
-package gui.is.shapes;
+package com.gui.is.shapes;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import geoTools.Coordinate;
-import geoTools.GeoTools;
-import geoTools.PolygonInt;
+import com.geo_tools.Coordinate;
+import com.geo_tools.GeoTools;
+import com.geo_tools.PolygonInt;
 
 public class Polygon implements PolygonInt {
 

@@ -19,7 +19,7 @@
 //  For more information, please email jsmith.carlsbad@gmail.com
 //    
 //==============================================================================
-package gui.core.mapViewer;
+package com.gui.core.mapViewer;
 
 import java.awt.Point;
 import java.util.Arrays;
@@ -30,19 +30,19 @@ import java.util.Vector;
 
 import javax.annotation.PostConstruct;
 
-import gui.core.mapTileControl.MapTile;
-import gui.core.mapTileControl.TileController;
-import gui.core.mapTileSources.BingAerialTileSource;
-import gui.core.mapTileSources.OsmCartoMapTileSource;
-import gui.core.mapTileSources.OsmCycleMapTileSource;
-import gui.core.mapTileSources.OsmDarkMapTileSource;
-import gui.core.mapTileSources.OsmHotMapTileSource;
-import gui.core.mapTileSources.OsmIntelMapTileSource;
-import gui.is.interfaces.mapObjects.MapLine;
-import gui.is.interfaces.mapObjects.MapMarker;
-import gui.is.interfaces.mapObjects.MapPolygon;
-import gui.is.interfaces.maptiles.TileSource;
-import gui.is.mapTileSources.OsmMercator;
+import com.gui.core.mapTileControl.MapTile;
+import com.gui.core.mapTileControl.TileController;
+import com.gui.core.mapTileSources.BingAerialTileSource;
+import com.gui.core.mapTileSources.OsmCartoMapTileSource;
+import com.gui.core.mapTileSources.OsmCycleMapTileSource;
+import com.gui.core.mapTileSources.OsmDarkMapTileSource;
+import com.gui.core.mapTileSources.OsmHotMapTileSource;
+import com.gui.core.mapTileSources.OsmIntelMapTileSource;
+import com.gui.is.interfaces.mapObjects.MapLine;
+import com.gui.is.interfaces.mapObjects.MapMarker;
+import com.gui.is.interfaces.mapObjects.MapPolygon;
+import com.gui.is.interfaces.maptiles.TileSource;
+import com.gui.is.mapTileSources.OsmMercator;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Insets;
@@ -68,7 +68,7 @@ import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
-import geoTools.Coordinate;
+import com.geo_tools.Coordinate;
 
 /**
  *
@@ -494,12 +494,12 @@ public abstract class ViewMap extends Pane {
 
 		zoomSlider.valueProperty().addListener( (ov, old_val, new_val) -> setZoom(new_val.intValue()));
 
-		Image imagePlus = new Image(this.getClass().getResource("/mapImages/plus.png").toString());
+		Image imagePlus = new Image(this.getClass().getResource("/com/mapImages/plus.png").toString());
 		zoomInButton = new Button();
 		zoomInButton.setGraphic(new ImageView(imagePlus));
 		zoomInButton.setOnAction( e -> {if( IgnoreRepaint == false ) zoomIn();});
 
-		Image imageMinus = new Image(this.getClass().getResource("/mapImages/minus.png").toString());
+		Image imageMinus = new Image(this.getClass().getResource("/com/mapImages/minus.png").toString());
 		zoomOutButton = new Button();
 		zoomOutButton.setGraphic(new ImageView(imageMinus));
 		zoomOutButton.setOnAction(e -> {if( IgnoreRepaint == false ) zoomOut();});
