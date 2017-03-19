@@ -77,4 +77,9 @@ public abstract class LayeredViewTree<S extends TreeItem<Layer>> extends ViewTre
 		layeredViewMap.removeLayer(layer);
 		super.handleRemoveTreeItem(treeItem);
 	}
+
+	@Override
+	public void updateTreeItemName(TreeItem<Layer> treeItem) {
+		System.out.println("Tree Item was updated -> " + treeItem);
+	}
 }

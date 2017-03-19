@@ -40,6 +40,12 @@ public class CheckBoxTreeCellEditor<T> extends CheckBoxTreeCell<T> {
     }
 
     @Override
+    public void commitEdit(T item) {
+        super.commitEdit(item);
+        ((ViewTree<T>) getTreeView()).updateTreeItemName(getTreeItem());
+    }
+
+    @Override
     public void updateItem(T item, boolean empty) {
     	super.updateItem(item, empty);
 
