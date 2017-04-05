@@ -1,6 +1,7 @@
 package com.gui.core.mapTree.internal;
 
 import com.gui.core.mapTree.ViewTree;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ContextMenu;
@@ -19,9 +20,13 @@ public class CheckBoxTreeCellEditor<T> extends CheckBoxTreeCell<T> {
 		graphic = new CheckBox();
 	}
 
+	private String firstText;
+
     @Override
     public void startEdit() {
         super.startEdit();
+        firstText = super.getText();
+        System.out.println("First text " + firstText);
 
         if (textField == null)
             createTextField();
@@ -41,8 +46,9 @@ public class CheckBoxTreeCellEditor<T> extends CheckBoxTreeCell<T> {
 
     @Override
     public void commitEdit(T item) {
+        System.out.println("From " + firstText + " to " + item.toString());
         super.commitEdit(item);
-        ((ViewTree<T>) getTreeView()).updateTreeItemName(getTreeItem());
+        ((ViewTree<T>) getTreeView()).updateTreeItemName(firstText, getTreeItem());
     }
 
     @Override
@@ -53,6 +59,11 @@ public class CheckBoxTreeCellEditor<T> extends CheckBoxTreeCell<T> {
     		setText(null);
     		setGraphic(null);
     	} else {
+            ObservableValue<Boolean> selectedState = getSelectedStateCallback().call(this.getTreeItem());
+            if (selectedState != null) {
+                System.out.println("SEL");
+            }
+
     		if (isEditing()) {
     			if (textField != null) {
     				textField.setText(getString());

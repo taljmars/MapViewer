@@ -49,6 +49,7 @@ public class CheckBoxViewTree extends LayeredViewTree<CheckBoxTreeItem<Layer>> {
 	private void addSelectionHandler(TreeItem<Layer> cbox) {
 		cbox.addEventHandler(CheckBoxTreeItem.<Layer>checkBoxSelectionChangedEvent(),
 				(event) -> {
+					System.out.println("TALMA");
 					CheckBoxTreeItem<Layer> cbItem = (CheckBoxTreeItem<Layer>) event.getTreeItem();
 					if (!cbItem.isIndeterminate())
 						getLayeredViewMap().setLayerVisibie(cbItem.getValue(), cbItem.isSelected());

@@ -72,5 +72,5 @@ public abstract class ViewTree<T> extends TreeView<T> {
 
 	abstract void handleTreeItemClick(TreeItem<T> treeItem);
 
-	public abstract void updateTreeItemName(TreeItem<T> treeItem);
+	public abstract void updateTreeItemName(String fromName, TreeItem<T> treeItem);
 }

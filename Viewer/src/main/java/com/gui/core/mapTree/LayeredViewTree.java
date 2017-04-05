@@ -79,7 +79,7 @@ public abstract class LayeredViewTree<S extends TreeItem<Layer>> extends ViewTre
 	}
 
 	@Override
-	public void updateTreeItemName(TreeItem<Layer> treeItem) {
-		System.out.println("Tree Item was updated -> " + treeItem);
+	public void updateTreeItemName(String fromName, TreeItem<Layer> treeItem) {
+		System.out.println("Tree Item was updated " + fromName + " -> " + treeItem);
 	}
 }
