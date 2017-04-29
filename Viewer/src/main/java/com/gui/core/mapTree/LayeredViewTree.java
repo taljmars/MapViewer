@@ -11,15 +11,11 @@ import javax.annotation.Resource;
 
 @ComponentScan("com.gui.core.mapViewer")
 public abstract class LayeredViewTree<S extends TreeItem<Layer>> extends ViewTree<Layer> {
-	
-	@SuppressWarnings("rawtypes")
-	private Class<? extends TreeItem> clazz;
 
 	private LayeredViewMap layeredViewMap;
 
-	public LayeredViewTree(S instance) {
+	public LayeredViewTree() {
 		super();
-		this.clazz = instance.getClass();
 	}
 
 	public LayeredViewMap getLayeredViewMap() {
@@ -38,16 +34,11 @@ public abstract class LayeredViewTree<S extends TreeItem<Layer>> extends ViewTre
 			System.err.println("Failed to find group");
 			return null;
 		}
-		S newTreeItem;
-		try {
-			newTreeItem = (S) clazz.newInstance();
-			newTreeItem.setValue(layer);
-			return (S) super.addTreeNode(newTreeItem, layerGroupTreeitem);
-		} catch (InstantiationException | IllegalAccessException e) {
-			System.err.println("Failed to instansiate Tree item");
-			return null;
-		}
+		S newTreeItem = createTreeItem(layer);
+		return (S) super.addTreeNode(newTreeItem, layerGroupTreeitem);
 	}
+
+	protected abstract S createTreeItem(Layer layer);
 	
 	protected void removeFromTreeGroup(Layer layer) {
 		S treeitem = findCheckBoxTreeItemByLayer(layer);

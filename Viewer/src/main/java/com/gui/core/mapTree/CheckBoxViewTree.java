@@ -1,6 +1,9 @@
 package com.gui.core.mapTree;
 
 import javax.annotation.PostConstruct;
+
+import javafx.collections.ObservableList;
+import javafx.scene.control.CheckBox;
 import org.springframework.stereotype.Component;
 
 import com.gui.core.mapTree.internal.CheckBoxTreeCellEditor;
@@ -12,14 +15,14 @@ import javafx.scene.control.CheckBoxTreeItem;
 import javafx.scene.control.TreeItem;
 
 @Component
-public class CheckBoxViewTree extends LayeredViewTree<CheckBoxTreeItem<Layer>> {
+public class CheckBoxViewTree extends LayeredViewTree<CheckBoxTreeItem<Layer>>{
 	
 	private LayerGroup generalGroup;
-	
+
 	public CheckBoxViewTree() {
-		super(new CheckBoxTreeItem<Layer>());
+		super();
 		TreeCellEditorConvertor<Layer> convertor = new LayeredCheckBoxTreeCellEditorConvertor();
-		setCellFactory(tree -> {return new CheckBoxTreeCellEditor<Layer>(convertor);});
+		setCellFactory(tree -> {return new CheckBoxTreeCellEditor<>(convertor);});
 	}
 	
 	private static int called;
@@ -31,29 +34,31 @@ public class CheckBoxViewTree extends LayeredViewTree<CheckBoxTreeItem<Layer>> {
 		
 		LayerGroup rootLayer = new LayerGroup("Layers");
 		getLayeredViewMap().setRootLayer(rootLayer);
-		CheckBoxTreeItem<Layer> rootItem = new CheckBoxTreeItem<Layer> (rootLayer);
+		CheckBoxTreeItem<Layer> rootItem =  createTreeItem(rootLayer);
 		rootItem.setExpanded(true);
+		rootItem.setSelected(true);
 		
 		generalGroup = new LayerGroup("General");
 		rootLayer.addChildren(generalGroup);
-        CheckBoxTreeItem<Layer> itemGeneral = new CheckBoxTreeItem<Layer> (generalGroup);
+        CheckBoxTreeItem<Layer> itemGeneral = createTreeItem(generalGroup);
+		addSelectionHandler(itemGeneral);
         
         rootItem.getChildren().addAll(itemGeneral);        
         setRoot(rootItem);
        
-        addSelectionHandler(getRoot());
+        addSelectionHandler((CheckBoxTreeItem<Layer>) getRoot());
         
         System.out.println("Checkbox Tree is ready");
 	}
 
-	private void addSelectionHandler(TreeItem<Layer> cbox) {
+	private void addSelectionHandler(CheckBoxTreeItem<Layer> cbox) {
 		cbox.addEventHandler(CheckBoxTreeItem.<Layer>checkBoxSelectionChangedEvent(),
-				(event) -> {
-					System.out.println("TALMA");
-					CheckBoxTreeItem<Layer> cbItem = (CheckBoxTreeItem<Layer>) event.getTreeItem();
-					if (!cbItem.isIndeterminate())
-						getLayeredViewMap().setLayerVisibie(cbItem.getValue(), cbItem.isSelected());
-				}
+			(event) -> {
+				System.out.println("TALMA");
+				CheckBoxTreeItem<Layer> cbItem = (CheckBoxTreeItem<Layer>) event.getTreeItem();
+				if (!cbItem.isIndeterminate())
+					getLayeredViewMap().setLayerVisibie(cbItem.getValue(), cbItem.isSelected());
+			}
 		);
 	}
 
@@ -70,5 +75,24 @@ public class CheckBoxViewTree extends LayeredViewTree<CheckBoxTreeItem<Layer>> {
 
 	@Override
 	public void handleTreeItemClick(TreeItem<Layer> treeItem) {
+	}
+
+	public void handleTreeItemMark(CheckBoxTreeItem<Layer> treeItem, Boolean aBoolean) {
+		System.out.println("\n\nvalue " + treeItem.getValue().getName() + " is marked: " + aBoolean);
+
+		((CheckBoxTreeItem)treeItem).selectedProperty().setValue(aBoolean);
+		ObservableList<TreeItem<Layer>> lst = treeItem.<CheckBoxTreeItem>getChildren();
+		for (TreeItem<Layer> child : lst) {
+			CheckBoxTreeItem<Layer> item = (CheckBoxTreeItem<Layer>) child;
+			handleTreeItemMark(item, aBoolean);
+			System.out.println("try to update " + item.getValue().getName());
+		}
+
+		refresh();
+	}
+
+	@Override
+	protected CheckBoxTreeItem<Layer> createTreeItem(Layer layer) {
+		return new CheckBoxTreeItem<>(layer);
 	}
 }

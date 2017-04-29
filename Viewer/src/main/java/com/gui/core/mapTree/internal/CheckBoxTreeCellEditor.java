@@ -1,11 +1,12 @@
 package com.gui.core.mapTree.internal;
 
+import com.gui.core.mapTree.CheckBoxViewTree;
 import com.gui.core.mapTree.ViewTree;
+import com.gui.core.mapTreeObjects.Layer;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTreeCell;
 import javafx.scene.input.KeyCode;
 
@@ -13,14 +14,20 @@ public class CheckBoxTreeCellEditor<T> extends CheckBoxTreeCell<T> {
 	 
     private TextField textField;
 	private TreeCellEditorConvertor<T> convertor;
-	private Node graphic;
+	private CheckBox graphic;
     
     public CheckBoxTreeCellEditor( TreeCellEditorConvertor<T> treeCellEditorConvertor ) {
 		this.convertor = treeCellEditorConvertor;
 		graphic = new CheckBox();
+        graphic.selectedProperty().addListener((observableValue, aBoolean, t1) -> handleMark(t1));
 	}
 
-	private String firstText;
+    private void handleMark(Boolean aBoolean) {
+        CheckBoxTreeItem<Layer> item = (CheckBoxTreeItem<Layer>) getTreeItem();
+        ((CheckBoxViewTree) getTreeView()).handleTreeItemMark(item, aBoolean);
+    }
+
+    private String firstText;
 
     @Override
     public void startEdit() {
