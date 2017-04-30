@@ -24,6 +24,11 @@ public class CheckBoxViewTree extends LayeredViewTree<CheckBoxTreeItem<Layer>>{
 		TreeCellEditorConvertor<Layer> convertor = new LayeredCheckBoxTreeCellEditorConvertor();
 		setCellFactory(tree -> {return new CheckBoxTreeCellEditor<>(convertor);});
 	}
+
+	public CheckBoxViewTree(TreeCellEditorConvertor<Layer> convertor) {
+		super();
+		setCellFactory(tree -> {return new CheckBoxTreeCellEditor<>(convertor);});
+	}
 	
 	private static int called;
 	@SuppressWarnings("unchecked")
