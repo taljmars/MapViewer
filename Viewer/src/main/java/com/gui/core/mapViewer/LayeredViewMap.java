@@ -234,6 +234,24 @@ public class LayeredViewMap extends ViewMap
 	}
 
 
+	public Layer findLayerByName(String name) {
+		return findLayerByName(root, name);
+	}
+
+	private Layer findLayerByName(Layer root, String name) {
+		if (root instanceof LayerGroup) {
+			for (Layer layer : ((LayerGroup) root).getChildens()) {
+				Layer res = findLayerByName(layer, name);
+				if (res != null)
+					return res;
+			}
+			return null;
+		}
+		if (root.getName().equals(name))
+			return root;
+
+		return null;
+	}
 
 	/**
 	 * @return the root
