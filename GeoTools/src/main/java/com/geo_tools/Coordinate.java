@@ -20,11 +20,11 @@ public class Coordinate {
 	private double altitude;// in meters
 
     public Coordinate(double lat, double lon) {
-        data = new Point2D.Double(lon, lat);
+        data = new Point2D.Double(lat, lon);
     }
     
     public Coordinate(double lat, double lon, double alt) {
-        data = new Point2D.Double(lon, lat);
+        data = new Point2D.Double(lat, lon);
         altitude = alt;
     }
     
@@ -46,19 +46,19 @@ public class Coordinate {
 	}
 
     public synchronized double getLat() {
-        return data.y;
-    }
-
-    public synchronized void setLat(double lat) {
-        data.y = lat;
-    }
-
-    public synchronized double getLon() {
         return data.x;
     }
 
+    public synchronized void setLat(double lat) {
+        data.x = lat;
+    }
+
+    public synchronized double getLon() {
+        return data.y;
+    }
+
     public synchronized void setLon(double lon) {
-        data.x = lon;
+        data.y = lon;
     }
     
     public double getAltitude() {
@@ -82,7 +82,7 @@ public class Coordinate {
 
     @Override
     public String toString() {
-        return "Coordinate[" + data.y + ", " + data.x + ']';
+        return "Coordinate[" + data.x + ", " + data.y + ']';
     }
 
     @Override
