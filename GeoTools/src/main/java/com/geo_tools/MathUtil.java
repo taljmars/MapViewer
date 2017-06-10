@@ -1,5 +1,8 @@
 package com.geo_tools;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class MathUtil {
 
 	private static double Constrain(double value, double min, double max) {
@@ -34,5 +37,11 @@ public class MathUtil {
 
 	public static double hypot(double altDelta, double distDelta) {
 		return Math.hypot(altDelta, distDelta);
+	}
+
+	public static double round(double value, int amountAfterDot) {
+		BigDecimal bd = new BigDecimal(value);
+		bd = bd.setScale(amountAfterDot, RoundingMode.HALF_UP);
+		return bd.doubleValue();
 	}
 }

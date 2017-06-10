@@ -20,16 +20,16 @@ public class Coordinate {
 	private double altitude;// in meters
 
     public Coordinate(double lat, double lon) {
-        data = new Point2D.Double(lat, lon);
+        data = new Point2D.Double(MathUtil.round(lat, 7), MathUtil.round(lon, 7));
     }
     
     public Coordinate(double lat, double lon, double alt) {
-        data = new Point2D.Double(lat, lon);
+        data = new Point2D.Double(MathUtil.round(lat, 7), MathUtil.round(lon, 7));
         altitude = alt;
     }
     
     public Coordinate(Coordinate coord) {
-        data = new Point2D.Double(coord.getLon(), coord.getLat());
+        data = new Point2D.Double(MathUtil.round(coord.getLon(), 7), MathUtil.round(coord.getLat(),7));
     }
     
     public Coordinate(Coordinate coord, double alt) {
