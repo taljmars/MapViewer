@@ -23,6 +23,7 @@ package com.gui.core.mapViewer;
 
 import java.awt.Point;
 import java.util.Iterator;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.event.EventListener;
@@ -51,220 +52,231 @@ import javax.annotation.Resource;
 public class LayeredViewMap extends ViewMap
 {
 
-	private CheckBoxViewTree checkBoxViewTree;
-    
+    private CheckBoxViewTree checkBoxViewTree;
+
     protected Button btnEditSaveMode;
     protected Button btnEditCancelMode;
-    
+
     private LayerGroup root;
-    
+
     private Layer modifiedLayer;
-    
+
     private VBox editorVbox;
-    
+
+    private AtomicBoolean isMapLayerEditing;
+
     public LayeredViewMap() {
-    	super();
-    	initLayerEditor();
-    	
-    	System.out.println("In LayedViewMap Constructor");
+        super();
+        initLayerEditor();
+
+        System.out.println("In LayedViewMap Constructor");
     }
 
-	@Resource(type = CheckBoxViewTree.class)
-	public void setCheckBoxViewTree(CheckBoxViewTree checkBoxViewTree) {
-		this.checkBoxViewTree = checkBoxViewTree;
-	}
+    @Resource(type = CheckBoxViewTree.class)
+    public void setCheckBoxViewTree(CheckBoxViewTree checkBoxViewTree) {
+            this.checkBoxViewTree = checkBoxViewTree;
+        }
 
-	public CheckBoxViewTree getCheckBoxViewTree() {
-		return checkBoxViewTree;
-	}
-    
+    public CheckBoxViewTree getCheckBoxViewTree() {
+        return checkBoxViewTree;
+    }
+
     private void initLayerEditor() {
-    	btnEditSaveMode = new Button("Save");
-    	btnEditCancelMode = new Button("Cancel");
-    	
-    	btnEditSaveMode.setOnAction( e -> LayerEditorSave());
-    	btnEditCancelMode.setOnAction( e -> LayerEditorCancel());
-    	
-    	editorVbox = new VBox();
-    	editorVbox.setPadding(new Insets(5));
-    	editorVbox.getChildren().add(btnEditSaveMode);
-    	editorVbox.getChildren().add(btnEditCancelMode);
-    	editorVbox.setLayoutX(50);
-    	editorVbox.setLayoutY(10);
-    	
-    	editorVbox.setVisible(false);
-    	
-    	getChildren().add(editorVbox);
-	}
+        isMapLayerEditing = new AtomicBoolean(false);
+        btnEditSaveMode = new Button("Save");
+        btnEditCancelMode = new Button("Cancel");
+
+        btnEditSaveMode.setOnAction( e -> LayerEditorSave());
+        btnEditCancelMode.setOnAction( e -> LayerEditorCancel());
+        
+        editorVbox = new VBox();
+        editorVbox.setPadding(new Insets(5));
+        editorVbox.getChildren().add(btnEditSaveMode);
+        editorVbox.getChildren().add(btnEditCancelMode);
+        editorVbox.setLayoutX(50);
+        editorVbox.setLayoutY(10);
+        
+        editorVbox.setVisible(false);
+        
+        getChildren().add(editorVbox);
+    }
     
     public void setRootLayer(LayerGroup rootLayer) {
-    	setRoot(rootLayer);
-	}	
+        setRoot(rootLayer);
+    }    
 
-	protected void startModifiedLayerMode(Layer modifiedLayer) {
-    	this.modifiedLayer = modifiedLayer;
-    	editorVbox.setVisible(true);
+    protected void startModifiedLayerMode(Layer modifiedLayer) {
+        this.modifiedLayer = modifiedLayer;
+        editorVbox.setVisible(true);
     }
     
     protected Layer finishModifiedLayerMode() {
-    	editorVbox.setVisible(false);
-    	Layer modifiedLayer = this.modifiedLayer;
-    	this.modifiedLayer = null;
-    	return modifiedLayer;
+        editorVbox.setVisible(false);
+        Layer modifiedLayer = this.modifiedLayer;
+        this.modifiedLayer = null;
+        return modifiedLayer;
     }
     
     public void addLayer(Layer layer, LayerGroup parentGroup) {
-		layer.setParent(parentGroup);
-		parentGroup.addChildren(layer);
-	}
+        layer.setParent(parentGroup);
+        parentGroup.addChildren(layer);
+    }
     
     public void removeLayer(Layer layer) {
-    	removeLayersRecursive(layer);
-		
-		if (layer.getParent() != null) {
-			LayerGroup lg = (LayerGroup) layer.getParent();
-			lg.removeChildren(layer);
-		}
+        removeLayersRecursive(layer);
+        
+        if (layer.getParent() != null) {
+            LayerGroup lg = (LayerGroup) layer.getParent();
+            lg.removeChildren(layer);
+        }
     }
     
     private void removeLayersRecursive(Layer layer) {
-		if (layer instanceof LayerGroup) {
-			LayerGroup lg = (LayerGroup) layer;
-			Iterator<Layer> it = lg.getChildens().iterator();
-			while (it.hasNext()) {
-				removeLayersRecursive(it.next());
-				it.remove();
-			}
-		}
-		else
-			layer.removeAllMapObjects();
-	}
-    
-    public void setLayerVisibie(Layer layer, boolean show) {
-    	if (show) {
-    		System.err.println("Show show all elements of " + layer);
-    		layer.regenerateMapObjects();
-    	}
-    	else {
-    		System.err.println("Show hide all elements of " + layer);
-    		layer.removeAllMapObjects();
-    	}
+        if (layer instanceof LayerGroup) {
+            LayerGroup lg = (LayerGroup) layer;
+            Iterator<Layer> it = lg.getChildens().iterator();
+            while (it.hasNext()) {
+                removeLayersRecursive(it.next());
+                it.remove();
+            }
+        }
+        else
+            layer.removeAllMapObjects();
     }
     
-	public void hideLayer(Layer layer) {
-		if (layer instanceof LayerGroup) {
-			LayerGroup lg = (LayerGroup) layer;
-			Iterator<Layer> it = lg.getChildens().iterator();
-			while (it.hasNext()) {
-				hideLayer(it.next());
-			}
-		}
-		else
-			layer.removeAllMapObjects();
-	}
-	
-	public void showLayer(Layer layer) {
-		if (layer instanceof LayerGroup) {
-			LayerGroup lg = (LayerGroup) layer;
-			Iterator<Layer> it = lg.getChildens().iterator();
-			while (it.hasNext()) {
-				showLayer(it.next());
-			}
-		}
-		else
-			layer.regenerateMapObjects();
-	}
-	
-	private ContextMenu popup;
-	
-	private ContextMenu buildPopup(Point point) {
-		ContextMenu popup = new ContextMenu();		
-		
-		MenuItem menuItemAddMarker = new MenuItem("Add Marker");
-		popup.getItems().add(menuItemAddMarker);
-		
-		menuItemAddMarker.setOnAction( arg -> this.addMapMarker(new MapMarkerDot(getPosition(point))));
+    public void setLayerVisibie(Layer layer, boolean show) {
+        if (show) {
+            System.err.println("Show show all elements of " + layer);
+            layer.regenerateMapObjects();
+        }
+        else {
+            System.err.println("Show hide all elements of " + layer);
+            layer.removeAllMapObjects();
+        }
+    }
+    
+    public void hideLayer(Layer layer) {
+        if (layer instanceof LayerGroup) {
+            LayerGroup lg = (LayerGroup) layer;
+            Iterator<Layer> it = lg.getChildens().iterator();
+            while (it.hasNext()) {
+                hideLayer(it.next());
+            }
+        }
+        else
+            layer.removeAllMapObjects();
+    }
+    
+    public void showLayer(Layer layer) {
+        if (layer instanceof LayerGroup) {
+            LayerGroup lg = (LayerGroup) layer;
+            Iterator<Layer> it = lg.getChildens().iterator();
+            while (it.hasNext()) {
+                showLayer(it.next());
+            }
+        }
+        else
+            layer.regenerateMapObjects();
+    }
+    
+    private ContextMenu popup;
+    
+    private ContextMenu buildPopup(Point point) {
+        ContextMenu popup = new ContextMenu();        
+        
+        MenuItem menuItemAddMarker = new MenuItem("Add Marker");
+        popup.getItems().add(menuItemAddMarker);
+        
+        menuItemAddMarker.setOnAction( arg -> this.addMapMarker(new MapMarkerDot(getPosition(point))));
 
-		return popup;
-	}
-	
-	@Override
-	protected void HandleMouseClick(MouseEvent me) {
-		if (popup != null)
-			popup.hide();
-		
-		if (!me.isPopupTrigger())
-			return;
-		
-		Point point = new Point((int) me.getX(), (int) me.getY());
-		popup = buildPopup(point);
-		popup.show(this, me.getScreenX(), me.getScreenY());
-	}
-	
-	@SuppressWarnings("unused")
-	private void EditModeOff() {
-		System.out.println("Edit mode is off");
-	}
+        return popup;
+    }
+    
+    @Override
+    protected void HandleMouseClick(MouseEvent me) {
+        if (popup != null)
+            popup.hide();
+        
+        if (!me.isPopupTrigger())
+            return;
+        
+        Point point = new Point((int) me.getX(), (int) me.getY());
+        popup = buildPopup(point);
+        popup.show(this, me.getScreenX(), me.getScreenY());
+    }
+    
+    @SuppressWarnings("unused")
+    protected void EditModeOff() {
+        isMapLayerEditing.set(false);
+        System.out.println("Edit mode is off");
+    }
 
-	private void EditModeOn() {
-		System.out.println("Edit mode is on");
-	}
-	
-	@EventListener
-	public void onApplicationEvent(GuiEvent command) {
-		switch (command.getCommand()) {
-		case EDITMODE_EXISTING_LAYER_START:
-			EditModeOn();
-			Layer layer = (Layer) command.getSource();
-			HandlEditModeForExistingLayer(layer);
-			break;
-		}
-	}
-	
-	public void HandlEditModeForExistingLayer(Layer layer) {
-		EditModeOn();
-	}
+    protected void EditModeOn() {
+        isMapLayerEditing.set(true);
+        System.out.println("Edit mode is on");
+    }
 
-	public void LayerEditorCancel() {
-		checkBoxViewTree.refresh();
-	}
+    public boolean isEditingLayer() {
+        return isMapLayerEditing.get();
+    }
+    
+    @EventListener
+    public void onApplicationEvent(GuiEvent command) {
+        switch (command.getCommand()) {
+        case EDITMODE_EXISTING_LAYER_START:
+            EditModeOn();
+            Layer layer = (Layer) command.getSource();
+            HandlEditModeForExistingLayer(layer);
+            break;
+        }
+    }
+    
+    public void HandlEditModeForExistingLayer(Layer layer) {
+        EditModeOn();
+    }
 
-	public void LayerEditorSave() {
-		checkBoxViewTree.refresh();
-	}
+    public void LayerEditorCancel() {
+        checkBoxViewTree.refresh();
+        this.finishModifiedLayerMode();
+    }
+
+    public void LayerEditorSave() {
+        checkBoxViewTree.refresh();
+        this.finishModifiedLayerMode();
+    }
 
 
-	public Layer findLayerByName(String name) {
-		return findLayerByName(root, name);
-	}
+    public Layer findLayerByName(String name) {
+        return findLayerByName(root, name);
+    }
 
-	private Layer findLayerByName(Layer root, String name) {
-		if (root instanceof LayerGroup) {
-			for (Layer layer : ((LayerGroup) root).getChildens()) {
-				Layer res = findLayerByName(layer, name);
-				if (res != null)
-					return res;
-			}
-			return null;
-		}
-		if (root.getName().equals(name))
-			return root;
+    private Layer findLayerByName(Layer root, String name) {
+        if (root instanceof LayerGroup) {
+            for (Layer layer : ((LayerGroup) root).getChildens()) {
+                Layer res = findLayerByName(layer, name);
+                if (res != null)
+                    return res;
+            }
+            return null;
+        }
+        if (root.getName().equals(name))
+            return root;
 
-		return null;
-	}
+        return null;
+    }
 
-	/**
-	 * @return the root
-	 */
-	public LayerGroup getRoot() {
-		return root;
-	}
+    /**
+     * @return the root
+     */
+    public LayerGroup getRoot() {
+        return root;
+    }
 
-	/**
-	 * @param root the root to set
-	 */
-	public void setRoot(LayerGroup root) {
-		this.root = root;
-	}
+    /**
+     * @param root the root to set
+     */
+    public void setRoot(LayerGroup root) {
+        this.root = root;
+    }
 
 }
