@@ -26,6 +26,7 @@ import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import com.gui.core.mapViewerObjects.MapMarkerCircle;
+import javafx.scene.image.Image;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -43,6 +44,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 import javax.annotation.Resource;
+import javax.swing.text.html.ImageView;
 
 /**
  *
@@ -188,10 +190,19 @@ public class LayeredViewMap extends ViewMap
         MenuItem menuItemAddMarker = new MenuItem("Add Marker");
         popup.getItems().add(menuItemAddMarker);
 
+        MenuItem menuItemAddMarkerImage = new MenuItem("Add Marker with Image");
+        popup.getItems().add(menuItemAddMarkerImage);
+
         MenuItem menuItemAddCircle = new MenuItem("Add Circle");
         popup.getItems().add(menuItemAddCircle);
-        
+
+        Image img = new Image(this.getClass().getResource("/com/mapImages/droneConnected.png").toString());
+        javafx.scene.image.ImageView iview = new javafx.scene.image.ImageView(img);
+        iview.setFitHeight(40);
+        iview.setFitWidth(40);
+
         menuItemAddMarker.setOnAction( arg -> this.addMapMarker(new MapMarkerDot("12", getPosition(point))));
+        menuItemAddMarkerImage.setOnAction( arg -> this.addMapMarker(new MapMarkerDot(iview, 45.0, getPosition(point))));
         menuItemAddCircle.setOnAction( arg -> this.addMapMarker(new MapMarkerCircle("12", getPosition(point), 50000)));
 
         return popup;

@@ -7,6 +7,7 @@ import com.gui.is.interfaces.mapObjects.MapMarker;
 import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.RadialGradient;
@@ -37,9 +38,17 @@ public class MapMarkerDot extends MapMarker {
     Circle sphere;
     int radius;
     String text;
+    ImageView imageView;
+    Double rotate;
 
     public MapMarkerDot(String text, Color color, Coordinate coordinate) {
         this(text, DEF_RADIUS, color, coordinate.getLat(), coordinate.getLon());
+    }
+
+    public MapMarkerDot(ImageView imageView, Double rotate, Coordinate coordinate) {
+        this("", DEF_RADIUS, null, coordinate.getLat(), coordinate.getLon());
+        this.imageView = imageView;
+        this.rotate = rotate;
     }
     
     public MapMarkerDot(String text, Coordinate coordinate) {
@@ -53,6 +62,8 @@ public class MapMarkerDot extends MapMarker {
 		this.sphere = mapMarkerDot.sphere;
 		this.radius = mapMarkerDot.radius;
 		this.text = mapMarkerDot.text;
+		this.imageView = mapMarkerDot.imageView;
+		this.rotate = mapMarkerDot.rotate;
 	}
     
     public MapMarkerDot(String text, double lat, double lon) {
@@ -60,18 +71,27 @@ public class MapMarkerDot extends MapMarker {
     }
 
     private MapMarkerDot(String text, int radius, Color color, double lat, double lon) {
+        this(text, radius, color, lat, lon, null, null);
+    }
+
+    private MapMarkerDot(String text, int radius, Color color, double lat, double lon, ImageView imageView, Double rotate) {
         super();
         this.color = color;
         this.lat = lat;
         this.lon = lon;
         this.radius = radius;
         this.text = text;
+        this.imageView = imageView;
+        this.rotate = rotate;
 
         if (!this.text.isEmpty()) {
             Bounds bounds = getBound();
             this.radius = (int) Math.ceil((Math.max(bounds.getHeight(), bounds.getWidth()) / 2) * 1.8);
         }
-        
+
+        if (imageView != null)
+            return;
+
         this.sphere = CircleBuilder.create()
                 .centerX(this.radius)
                 .centerY(this.radius)
@@ -103,13 +123,24 @@ public class MapMarkerDot extends MapMarker {
     }
 
     public void Render(Group g, Point position, Double radius) {
-        Text text = createText();
-        text.setTranslateX(position.x - this.radius);
-        text.setTranslateY(position.y - this.radius);
+        StackPane layout = new StackPane();
         this.sphere.setTranslateX(position.x - this.radius);
         this.sphere.setTranslateY(position.y - this.radius);
-        StackPane layout = new StackPane();
-        layout.getChildren().addAll(this.sphere, text);
+        if (imageView != null) {
+            this.imageView.setTranslateX(position.x - this.imageView.getFitWidth()/2);
+            this.imageView.setTranslateY(position.y - this.imageView.getFitHeight()/2);
+            this.imageView.setRotate(this.rotate);
+            layout.getChildren().addAll(this.imageView);
+        }
+        else {
+            layout.getChildren().addAll(this.sphere);
+        }
+        if (!text.isEmpty()) {
+            Text text = createText();
+            text.setTranslateX(position.x - this.radius);
+            text.setTranslateY(position.y - this.radius);
+            layout.getChildren().addAll(text);
+        }
         g.getChildren().addAll(layout);
     }
 
