@@ -25,6 +25,7 @@ import java.awt.Point;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import com.gui.core.mapViewerObjects.MapMarkerCircle;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -186,8 +187,12 @@ public class LayeredViewMap extends ViewMap
         
         MenuItem menuItemAddMarker = new MenuItem("Add Marker");
         popup.getItems().add(menuItemAddMarker);
+
+        MenuItem menuItemAddCircle = new MenuItem("Add Circle");
+        popup.getItems().add(menuItemAddCircle);
         
-        menuItemAddMarker.setOnAction( arg -> this.addMapMarker(new MapMarkerDot(getPosition(point))));
+        menuItemAddMarker.setOnAction( arg -> this.addMapMarker(new MapMarkerDot("12", getPosition(point))));
+        menuItemAddCircle.setOnAction( arg -> this.addMapMarker(new MapMarkerCircle("12", getPosition(point), 50000)));
 
         return popup;
     }

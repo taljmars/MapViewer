@@ -2,13 +2,18 @@ package com.gui.core.mapViewerObjects;
 
 import java.awt.Point;
 
+import com.gui.core.mapViewer.MapViewerSettings;
 import com.gui.is.interfaces.mapObjects.MapMarker;
+import javafx.geometry.Bounds;
 import javafx.scene.Group;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
 import com.geo_tools.Coordinate;
 import com.geo_tools.GeoTools;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextBoundsType;
 
 /**
  * A simple implementation of the {@link MapMarker} interface. Each map marker
@@ -18,23 +23,23 @@ import com.geo_tools.GeoTools;
  * @author taljmars
  *
  */
-public class MapMarkerCircle implements MapMarker {
+public class MapMarkerCircle extends MapMarker {
 
-	private String name;
 	private double lat;
 	private double lon;
 	private Color color;
 	private Circle sphere;
 	private double radius;
+	private String text;
     
 	/**
 	 * 
-	 * @param string name
+	 * @param text name
 	 * @param iCoord position
 	 * @param radius in meters
 	 */
-    public MapMarkerCircle(String string, Coordinate iCoord, double radius) {
-		this(iCoord, radius);
+    public MapMarkerCircle(String text, Coordinate iCoord, double radius) {
+		this(text, iCoord.getLat(), iCoord.getLon(), radius);
 	}
     
     /**
@@ -43,7 +48,7 @@ public class MapMarkerCircle implements MapMarker {
      * @param radius in meters
      */
     public MapMarkerCircle(Coordinate iCoordinate, double radius) {
-        this(iCoordinate.getLat(), iCoordinate.getLon(), radius);
+        this("", iCoordinate.getLat(), iCoordinate.getLon(), radius);
     }
     
     /**
@@ -52,17 +57,17 @@ public class MapMarkerCircle implements MapMarker {
      * @param lon
      * @param radius in meters
      */
-    public MapMarkerCircle(double lat, double lon, double radius) {
-        this(lat, lon, radius, Color.TRANSPARENT);
+    public MapMarkerCircle(String text ,double lat, double lon, double radius) {
+        this(text, lat, lon, radius, Color.TRANSPARENT);
     }
     
 	public MapMarkerCircle(MapMarkerCircle mapMarkerCircle) {
-		this.name = mapMarkerCircle.name;
 		this.lat = mapMarkerCircle.lat;
 		this.lon = mapMarkerCircle.lon;
 		this.color = mapMarkerCircle.color;
 		this.sphere = mapMarkerCircle.sphere;
 		this.radius = mapMarkerCircle.radius;
+		this.text = mapMarkerCircle.text;
 	}
 
 	/**
@@ -72,9 +77,9 @@ public class MapMarkerCircle implements MapMarker {
 	 * @param radius in meters
 	 * @param color
 	 */
-    private MapMarkerCircle(double lat, double lon, double radius, Color color) {
+    private MapMarkerCircle(String text, double lat, double lon, double radius, Color color) {
         super();
-        this.name = "";
+        this.text = text;
         this.color = color;
         this.lat = lat;
         this.lon = lon;
@@ -96,10 +101,18 @@ public class MapMarkerCircle implements MapMarker {
     }
 
     public void Render(Group g, Point position, Double radius) {
-        this.sphere.setTranslateX(position.x);
-        this.sphere.setTranslateY(position.y);
-        this.sphere.setRadius(radius);
-        g.getChildren().add(this.sphere);
+		Text text = createText();
+		Bounds bounds = getBound();
+		this.sphere.setTranslateX(position.x - radius);
+		this.sphere.setTranslateY(position.y - radius);
+		this.sphere.setRadius(radius);
+		text.setTranslateX(position.x - radius);
+		text.setTranslateY(position.y - radius);
+
+        //g.getChildren().add(this.sphere);
+		StackPane layout = new StackPane();
+		layout.getChildren().addAll(this.sphere, text);
+		g.getChildren().addAll(layout);
     }
 
     @Override
@@ -124,6 +137,16 @@ public class MapMarkerCircle implements MapMarker {
 	@Override
 	public double getRadius() {
 		return radius;
+	}
+
+	@Override
+	public String getText() {
+		return text;
+	}
+
+	@Override
+	public Color getColor() {
+		return Color.ORANGE;
 	}
 
 	public boolean contains(Coordinate coord) {

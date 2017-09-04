@@ -23,18 +23,52 @@ package com.gui.is.interfaces.mapObjects;
 
 import java.awt.Point;
 
+import com.gui.core.mapViewer.MapViewerSettings;
+import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import com.geo_tools.Coordinate;
+import javafx.scene.Scene;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextBoundsType;
 
-public interface MapMarker extends MapObject {
+public abstract class MapMarker implements MapObject {
 
-    public double getLat();
+    public abstract double getLat();
 
-    public double getLon();
+    public abstract double getLon();
     
-    public Coordinate getCoordinate();
+    public abstract Coordinate getCoordinate();
 
-    public void Render(Group g, Point position, Double integer);
+    public abstract void Render(Group g, Point position, Double integer);
 
-	public double getRadius();
+	public abstract double getRadius();
+
+	public abstract String getText();
+
+    public abstract Color getColor();
+
+    public abstract MapMarker clone();
+
+    protected Text createText() {
+        Text text = new Text(getText());
+        text.setBoundsType(TextBoundsType.VISUAL);
+        text.setFill(getColor());
+        text.setStyle(
+                "-fx-font-family: \"Times New Roman\";" +
+                        "-fx-font-style: bold;" +
+                        "-fx-stroke: black;" +
+                        "-fx-stroke-width: 0.3;" +
+                        "-fx-font-size: " + MapViewerSettings.getMarkersFontSize() + "px;"
+        );
+
+        return text;
+    }
+
+    protected Bounds getBound() {
+        Text text = createText();
+        new Scene(new Group());
+        text.applyCss();
+        return text.getLayoutBounds();
+    }
 }

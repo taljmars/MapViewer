@@ -2,8 +2,12 @@ package com.gui.core.mapViewerObjects;
 
 import java.awt.Point;
 
+import com.gui.core.mapViewer.MapViewerSettings;
 import com.gui.is.interfaces.mapObjects.MapMarker;
+import javafx.geometry.Bounds;
 import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.RadialGradient;
 import javafx.scene.paint.RadialGradientBuilder;
@@ -11,6 +15,8 @@ import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.CircleBuilder;
 import com.geo_tools.Coordinate;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextBoundsType;
 
 /**
  * A simple implementation of the {@link MapMarker} interface. Each map marker
@@ -21,7 +27,7 @@ import com.geo_tools.Coordinate;
  *
  */
 @SuppressWarnings("deprecation")
-public class MapMarkerDot implements MapMarker {
+public class MapMarkerDot extends MapMarker {
 
 	private final static int DEF_RADIUS = 10;
 	
@@ -30,13 +36,14 @@ public class MapMarkerDot implements MapMarker {
     Color color;
     Circle sphere;
     int radius;
-    
-    public MapMarkerDot(Color color, Coordinate coordinate) {
-        this(DEF_RADIUS, color, coordinate.getLat(), coordinate.getLon());
+    String text;
+
+    public MapMarkerDot(String text, Color color, Coordinate coordinate) {
+        this(text, DEF_RADIUS, color, coordinate.getLat(), coordinate.getLon());
     }
     
-    public MapMarkerDot(Coordinate coordinate) {
-        this(coordinate.getLat(), coordinate.getLon());
+    public MapMarkerDot(String text, Coordinate coordinate) {
+        this(text, coordinate.getLat(), coordinate.getLon());
     }
     
     public MapMarkerDot(MapMarkerDot mapMarkerDot) {
@@ -45,23 +52,30 @@ public class MapMarkerDot implements MapMarker {
 		this.color = mapMarkerDot.color;
 		this.sphere = mapMarkerDot.sphere;
 		this.radius = mapMarkerDot.radius;
+		this.text = mapMarkerDot.text;
 	}
     
-    public MapMarkerDot(double lat, double lon) {
-        this( DEF_RADIUS, Color.YELLOW, lat, lon);
+    public MapMarkerDot(String text, double lat, double lon) {
+        this(text, DEF_RADIUS, Color.YELLOW, lat, lon);
     }
 
-    private MapMarkerDot(int radius, Color color, double lat, double lon) {
+    private MapMarkerDot(String text, int radius, Color color, double lat, double lon) {
         super();
         this.color = color;
         this.lat = lat;
         this.lon = lon;
         this.radius = radius;
+        this.text = text;
+
+        if (!this.text.isEmpty()) {
+            Bounds bounds = getBound();
+            this.radius = (int) Math.ceil((Math.max(bounds.getHeight(), bounds.getWidth()) / 2) * 1.8);
+        }
         
         this.sphere = CircleBuilder.create()
-                .centerX(radius)
-                .centerY(radius)
-                .radius(radius)
+                .centerX(this.radius)
+                .centerY(this.radius)
+                .radius(this.radius)
                 .cache(true)
                 .build();        
 
@@ -84,10 +98,19 @@ public class MapMarkerDot implements MapMarker {
         return lon;
     }
 
+    public String getText() {
+        return text;
+    }
+
     public void Render(Group g, Point position, Double radius) {
+        Text text = createText();
+        text.setTranslateX(position.x - this.radius);
+        text.setTranslateY(position.y - this.radius);
         this.sphere.setTranslateX(position.x - this.radius);
         this.sphere.setTranslateY(position.y - this.radius);
-        g.getChildren().add(this.sphere);
+        StackPane layout = new StackPane();
+        layout.getChildren().addAll(this.sphere, text);
+        g.getChildren().addAll(layout);
     }
 
     @Override
