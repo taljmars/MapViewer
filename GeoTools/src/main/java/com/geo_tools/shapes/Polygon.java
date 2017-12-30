@@ -1,4 +1,4 @@
-package com.gui.is.shapes;
+package com.geo_tools.shapes;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package com.gui.is.shapes.spline;
+package com.geo_tools.shapes.spline;
 
 import java.util.ArrayList;
 import java.util.List;
