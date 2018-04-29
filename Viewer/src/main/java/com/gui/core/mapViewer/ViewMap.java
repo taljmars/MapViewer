@@ -22,11 +22,8 @@
 package com.gui.core.mapViewer;
 
 import java.awt.Point;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Vector;
+import java.net.URL;
+import java.util.*;
 
 import javax.annotation.PostConstruct;
 
@@ -45,6 +42,7 @@ import com.gui.is.interfaces.maptiles.TileSource;
 import com.gui.is.mapTileSources.OsmMercator;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -374,19 +372,19 @@ public abstract class ViewMap extends Pane {
 	@PostConstruct
 	private void init() {
 		if (called++ > 1)
-			throw new RuntimeException("Not a Singletone");
+			throw new RuntimeException("Not a Singleton");
 
 		setTileSource(mapTilesSources[0]);
 		setMonochromeMode(false);
-		setMapBounds( 0, 0, 800, 600 );
+//		setMapBounds( 0, 0, _WIDTH.get(), _HEIGHT.get() );
 	}
 
 	public Pane getMapTopPane() {
 		HBox p = new HBox();
 		p.setAlignment(Pos.CENTER);
 		p.setPadding(new Insets(5, 5, 5, 5));
-	    p.setSpacing(5);
-	    p.setStyle("-fx-background-color: white;");
+		p.setSpacing(5);
+		p.setStyle("-fx-background-color: white; -fx-background-radius: 5;");
 		p.getChildren().add(CursorLocationText);
 		
 		Button btnMapMenu = new Button("Map Menu");
@@ -401,8 +399,12 @@ public abstract class ViewMap extends Pane {
 		HBox p = new HBox();
 		p.setAlignment(Pos.CENTER);
 		p.setPadding(new Insets(5, 5, 5, 5));
-	    p.setSpacing(5);
-	    p.setStyle("-fx-background-color: white;");
+		p.setSpacing(5);
+		p.setPrefHeight(30);
+		p.setPrefWidth(470);
+		p.setMaxSize(p.getPrefWidth(), p.getPrefHeight());
+		p.setOpacity(0.7);
+		p.setStyle("-fx-background-color: white; -fx-background-radius: 5;");
 	    
 		ComboBox<TileSource> cmbTileSourceSelector = new ComboBox<TileSource>();
 		cmbTileSourceSelector.getItems().addAll(new Vector<TileSource>(Arrays.asList(mapTilesSources)));
@@ -802,6 +804,11 @@ public abstract class ViewMap extends Pane {
 
 	public boolean getZoomContolsVisible() {
 		return zoomSlider.isVisible();
+	}
+
+	public void setShowToolbars(boolean visible) {
+		this.topPane.setVisible(visible);
+		this.buttomPane.setVisible(visible);
 	}
 
 	public void setTileSource(TileSource tileSource) {

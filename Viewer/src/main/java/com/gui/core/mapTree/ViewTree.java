@@ -18,6 +18,8 @@ public abstract class ViewTree<T> extends TreeView<T> {
 	public void setTreeBound(int x, int y, int width, int height) {
 		this.setPrefWidth(width);
 		this.setPrefHeight(height);
+		this.setWidth(width);
+		this.setHeight(height);
 	}
 
 	public ContextMenu getPopupMenu(TreeItem<T> treeItem) {

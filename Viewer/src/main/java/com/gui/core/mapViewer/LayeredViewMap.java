@@ -22,7 +22,9 @@
 package com.gui.core.mapViewer;
 
 import java.awt.Point;
+import java.net.URL;
 import java.util.Iterator;
+import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import com.gui.core.mapViewerObjects.MapMarkerCircle;
