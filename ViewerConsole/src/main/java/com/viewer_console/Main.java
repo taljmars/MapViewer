@@ -1,9 +1,6 @@
 package com.viewer_console;
 
-import com.gui.core.mapViewer.ViewMap;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Screen;

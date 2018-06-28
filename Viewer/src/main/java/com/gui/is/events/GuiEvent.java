@@ -19,7 +19,7 @@ public class GuiEvent extends ApplicationEvent {
      *
      */
     public enum MAPVIEWER_GUI_COMMAND {
-        EDITMODE_EXISTING_LAYER_START
+        EDITMODE_EXISTING_LAYER_START,
     }
 
     private MAPVIEWER_GUI_COMMAND command;

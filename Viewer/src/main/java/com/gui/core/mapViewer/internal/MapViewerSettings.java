@@ -1,4 +1,4 @@
-package com.gui.core.mapViewer;
+package com.gui.core.mapViewer.internal;
 
 public class MapViewerSettings {
 

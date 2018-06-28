@@ -1,72 +1,77 @@
-package com.gui.core.mapTreeObjects;
+package com.gui.core.layers;
 
 import java.util.Vector;
 
-import com.gui.core.mapViewer.ViewMap;
+import com.gui.core.mapViewer.LayeredViewMap;
 import com.gui.is.interfaces.mapObjects.MapLine;
 import com.gui.is.interfaces.mapObjects.MapMarker;
 import com.gui.is.interfaces.mapObjects.MapPolygon;
 
-public class LayerSingle extends Layer {
+public class LayerSingle extends AbstractLayer {
 	
 	private Vector<MapMarker> mapMarkers;
 	private Vector<MapLine> mapLines;
 	private Vector<MapPolygon> mapPolygons;
-	private ViewMap viewMap;
+	private LayeredViewMap viewMap;
 	
-	public LayerSingle(String name, ViewMap viewMap) {
+	public LayerSingle(String name, LayeredViewMap viewMap) {
 		super(name);
 		this.viewMap = viewMap;
 		initLocals();
 	}
-	
-	public LayerSingle(LayerSingle layer, ViewMap viewMap) {
+
+	public LayerSingle(LayerSingle layer) {
 		super(layer);
-		this.viewMap = viewMap;
+		this.viewMap = layer.viewMap;
 		initLocals();
-		
-		for (MapMarker m : layer.mapMarkers) this.mapMarkers.addElement((MapMarker) m.clone());
-		for (MapLine m : layer.mapLines) this.mapLines.addElement((MapLine) m.clone());
-		for (MapPolygon m : layer.mapPolygons) this.mapPolygons.addElement((MapPolygon) m.clone());
+
+		for (MapMarker m : layer.mapMarkers) this.mapMarkers.addElement((MapMarker) m.cloneMe());
+		for (MapLine m : layer.mapLines) this.mapLines.addElement((MapLine) m.cloneMe());
+		for (MapPolygon m : layer.mapPolygons) this.mapPolygons.addElement((MapPolygon) m.cloneMe());
 	}
-	
+
+	@Override
+	public AbstractLayer cloneMe() {
+		return new LayerSingle(this);
+	}
+
 	private void initLocals() {
 		mapMarkers = new Vector<>();
 		mapPolygons = new Vector<>();
 		mapLines = new Vector<>();
-//		viewMap = (ViewMap) AppConfig.context.getBean("map");
 	}
 	
 	protected Vector<MapPolygon> getMapPolygons() {
 		return mapPolygons;
 	}
 		
-	protected void addMapMarker(MapMarker marker) {
+	public void addMapMarker(MapMarker marker) {
 		viewMap.addMapMarker(marker);
-    	mapMarkers.addElement(marker);
-    }
-	
-	protected void removeMapMarker(MapMarker marker) {
+		mapMarkers.addElement(marker);
+	}
+
+	public void removeMapMarker(MapMarker marker) {
 		viewMap.removeMapMarker(marker);
-    	mapMarkers.removeElement(marker);
+		mapMarkers.removeElement(marker);
 	}
 	
 	protected void showAllMapMarkers() {
-		for (MapMarker mapMarker : mapMarkers)
+		for (MapMarker mapMarker : mapMarkers) {
 			viewMap.addMapMarker(mapMarker);
-    }
-	
-	protected void addMapPolygon(MapPolygon polygon) {
+		}
+	}
+
+	public void addMapPolygon(MapPolygon polygon) {
 		viewMap.addMapPolygon(polygon);
 		mapPolygons.addElement(polygon);
-    }
+	}
 	
 	protected void showAllMapPolygons() {
 		for (MapPolygon polygon : mapPolygons)
 			viewMap.addMapPolygon(polygon);
-    }
-    
-	protected void addMapLine(MapLine line) {
+	}
+
+	public void addMapLine(MapLine line) {
 		viewMap.addMapLine(line);
 		mapLines.addElement(line);
 	}
@@ -105,30 +110,37 @@ public class LayerSingle extends Layer {
 		for (MapPolygon polygon : mapPolygons)
 			viewMap.removeMapPolygon(polygon);
 	}
-	
-	public void removeAllMapObjects() {
-		System.err.println("Remove all map obejct");
-		removeAllMapLines();
-		removeAllMapMarkers();
-		removeAllMapPolygons();
-	}
-	
+
+	@Override
 	public void hideAllMapObjects() {
 		hideAllMapLines();
 		hideAllMapMarkers();
 		hideAllMapPolygons();
 	}
-	
+
+	@Override
 	public void showAllMapObjects() {
 		showAllMapLines();
 		showAllMapMarkers();
 		showAllMapPolygons();
 	}
-	
+
 	@Override
 	public void regenerateMapObjects() {
 		hideAllMapObjects();
 		showAllMapObjects();
 	}
-	
+
+	@Override
+	public void removeAllMapObjects() {
+		System.err.println("Remove all map object");
+		removeAllMapLines();
+		removeAllMapMarkers();
+		removeAllMapPolygons();
+	}
+
+	@Override
+	public String getCaption() {
+		return "";
+	}
 }

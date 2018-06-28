@@ -1,76 +1,26 @@
 package com.gui.core.mapTree;
 
-import org.springframework.context.annotation.ComponentScan;
-
-import com.gui.core.mapTreeObjects.Layer;
-import com.gui.core.mapTreeObjects.LayerGroup;
-import com.gui.core.mapViewer.LayeredViewMap;
+import com.gui.core.layers.AbstractLayer;
+import com.gui.core.layers.LayerGroup;
 import javafx.scene.control.TreeItem;
 
-import javax.annotation.Resource;
+public interface LayeredViewTree extends ViewTree<AbstractLayer> {
 
-@ComponentScan("com.gui.core.mapViewer")
-public abstract class LayeredViewTree<S extends TreeItem<Layer>> extends ViewTree<Layer> {
+//    void removeTreeItemByName(String name);
 
-	private LayeredViewMap layeredViewMap;
+    void reloadData();
 
-	public LayeredViewTree() {
-		super();
-	}
+    <P extends TreeItem<AbstractLayer>> P addLayer(AbstractLayer layer, LayerGroup parent);
 
-	public LayeredViewMap getLayeredViewMap() {
-		return layeredViewMap;
-	}
+    <P extends TreeItem<AbstractLayer>> P editLayer(AbstractLayer layer);
 
-	@Resource(type = LayeredViewMap.class)
-	public void setLayeredViewMap(LayeredViewMap layeredViewMap) {
-		this.layeredViewMap = layeredViewMap;
-	}
+    <P extends TreeItem<AbstractLayer>> P removeLayer(AbstractLayer layer);
 
-	@SuppressWarnings("unchecked")
-	protected S addTreeNode(Layer layer, LayerGroup layerGroup) {
-		S layerGroupTreeitem = findCheckBoxTreeItemByLayer(layerGroup);
-		if (layerGroupTreeitem == null) {
-			System.err.println("Failed to find group");
-			return null;
-		}
-		S newTreeItem = createTreeItem(layer);
-		return (S) super.addTreeNode(newTreeItem, layerGroupTreeitem);
-	}
+    String dumpTree();
 
-	protected abstract S createTreeItem(Layer layer);
-	
-	protected void removeFromTreeGroup(Layer layer) {
-		S treeitem = findCheckBoxTreeItemByLayer(layer);
-		if (treeitem == null) {
-			System.err.println("Failed to find layer");
-			return;
-		}
-		
-		S parentTreeitem = findCheckBoxTreeItemByLayer(layer.getParent());
-		if (parentTreeitem == null) {
-			System.err.println("Failed to find layer parent");
-			return;
-		}
-		
-		super.removeTreeNode(treeitem, parentTreeitem);
-	}
-	
-	public S findCheckBoxTreeItemByLayer(Layer layer) {
-		@SuppressWarnings("unchecked")
-		S res = (S) super.findTreeItemByValue(layer, getRoot());
-		return res;
-	}
-	
-	@Override
-	protected void handleRemoveTreeItem(TreeItem<Layer> treeItem) {
-		Layer layer = treeItem.getValue();
-		layeredViewMap.removeLayer(layer);
-		super.handleRemoveTreeItem(treeItem);
-	}
+    <P extends TreeItem<AbstractLayer>> P createTreeItem(AbstractLayer layer);
 
-	@Override
-	public void updateTreeItemName(String fromName, TreeItem<Layer> treeItem) {
-		System.out.println("Tree Item was updated " + fromName + " -> " + treeItem);
-	}
+    <P extends TreeItem<AbstractLayer>> void stopEditing();
+
+    AbstractLayer getModifiedLayer();
 }

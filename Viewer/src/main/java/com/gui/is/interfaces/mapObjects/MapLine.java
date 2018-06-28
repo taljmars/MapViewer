@@ -21,7 +21,7 @@
 //==============================================================================
 package com.gui.is.interfaces.mapObjects;
 
-import com.gui.core.mapViewer.ViewMap;
+import com.gui.core.mapViewer.internal.ViewMapImpl;
 import javafx.scene.Group;
 import com.geo_tools.Coordinate;
 
@@ -40,7 +40,7 @@ public interface MapLine extends MapObject {
      * @param g
      * @param position
      */
-    public void Render(ViewMap viewer, Group g);
+    public void Render(ViewMapImpl viewer, Group g);
 
 
 	public double getBearing();    

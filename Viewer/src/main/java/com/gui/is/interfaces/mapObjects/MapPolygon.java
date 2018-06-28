@@ -23,7 +23,7 @@ package com.gui.is.interfaces.mapObjects;
 
 import java.util.List;
 
-import com.gui.core.mapViewer.ViewMap;
+import com.gui.core.mapViewer.internal.ViewMapImpl;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import com.geo_tools.Coordinate;
@@ -39,7 +39,7 @@ public interface MapPolygon extends MapObject {
     
     public Color getFillColor();
     
-    public void Render(ViewMap viewer, Group g);
+    public void Render(ViewMapImpl viewer, Group g);
 
 	public void addCoordinate(Coordinate coordinate);
 

@@ -1,35 +1,33 @@
 package com.viewer_console;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import javax.annotation.PostConstruct;
-
-import com.gui.core.mapTree.LayeredViewTree;
-import com.gui.core.mapViewer.ViewMap;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.stage.Screen;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
+import com.gui.core.mapTree.internal.LayeredViewTreeImpl;
 import com.gui.core.mapViewer.LayeredViewMap;
+import com.gui.core.mapViewer.internal.LayeredViewMapImpl;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.Pane;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
+
+import javax.annotation.PostConstruct;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 @Component
 public class MapView extends Pane implements ChangeListener<Number>, Initializable {
 
-	private LayeredViewTree tree;
-	private LayeredViewMap map;
+	private LayeredViewTreeImpl tree;
+	private LayeredViewMapImpl map;
 
 	public static SimpleIntegerProperty _WIDTH = new SimpleIntegerProperty(540);
 	public static SimpleIntegerProperty _HEIGHT = new SimpleIntegerProperty(960);
 	private static double lastPosition = 0.1;
-	
+
 	@FXML private SplitPane splitPane;
 	@FXML private Pane left;
 	@FXML private Pane right;
@@ -37,8 +35,7 @@ public class MapView extends Pane implements ChangeListener<Number>, Initializab
 	private static int called;
 	@PostConstruct
 	private void init() {
-		if (called++ > 1)
-			throw new RuntimeException("Not a Singleton");
+		Assert.isTrue(++called == 1, "Not a Singleton");
 
 		_WIDTH.addListener((observable, oldValue, newValue) -> {
 			splitPane.setMaxWidth((int) newValue);
@@ -53,12 +50,12 @@ public class MapView extends Pane implements ChangeListener<Number>, Initializab
 	}
 
 	@Autowired
-	public void setTree(LayeredViewTree tree) {
+	public void setTree(LayeredViewTreeImpl tree) {
 		this.tree = tree;
 	}
 
 	@Autowired
-	public void setMap(LayeredViewMap map) {
+	public void setMap(LayeredViewMapImpl map) {
 		this.map = map;
 	}
 	

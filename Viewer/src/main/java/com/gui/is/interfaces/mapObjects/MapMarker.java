@@ -23,7 +23,7 @@ package com.gui.is.interfaces.mapObjects;
 
 import java.awt.Point;
 
-import com.gui.core.mapViewer.MapViewerSettings;
+import com.gui.core.mapViewer.internal.MapViewerSettings;
 import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import com.geo_tools.Coordinate;
@@ -48,7 +48,7 @@ public abstract class MapMarker implements MapObject {
 
     public abstract Color getColor();
 
-    public abstract MapMarker clone();
+    public abstract MapMarker cloneMe();
 
     protected Text createText() {
         Text text = new Text(getText());

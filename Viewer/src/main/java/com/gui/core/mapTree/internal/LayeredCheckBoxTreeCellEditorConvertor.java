@@ -1,13 +1,13 @@
 package com.gui.core.mapTree.internal;
 
-import com.gui.core.mapTreeObjects.Layer;
+import com.gui.core.layers.AbstractLayer;
 import javafx.scene.control.TreeItem;
 
-public class LayeredCheckBoxTreeCellEditorConvertor implements TreeCellEditorConvertor<Layer>{
+public class LayeredCheckBoxTreeCellEditorConvertor implements TreeCellEditorConvertor<AbstractLayer>{
 
 	@Override
-	public Layer fromString(TreeItem<Layer> treeItem, String title) {
-		Layer layer = treeItem.getValue();
+	public AbstractLayer fromString(TreeItem<AbstractLayer> treeItem, String title) {
+		AbstractLayer layer = treeItem.getValue();
 		layer.setName(title);
 		return layer;
 	}

@@ -2,12 +2,18 @@
 
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.Pane?>
+<Pane fx:controller="com.viewer_console.MapView" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
 
-<Pane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.viewer_console.MapView">
-	<SplitPane fx:id="splitPane" dividerPositions="0.2">
-		<items>
-			<Pane fx:id="left" />
-			<Pane fx:id="right" />
-		</items>
-	</SplitPane>
+	<children>
+
+		<SplitPane fx:id="splitPane" dividerPositions="0.2">
+			<items>
+				<Pane fx:id="left" />
+				<Pane fx:id="right" />
+			</items>
+		</SplitPane>
+
+		<fx:include source="/com/views/components/LayerEditorView.fxml"/>
+
+	</children>
 </Pane>
