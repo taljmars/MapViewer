@@ -91,12 +91,12 @@
             <version>8.40.12</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-controls -->
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>11</version>
-        </dependency>
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.openjfx/javafx-controls &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.openjfx</groupId>-->
+            <!--<artifactId>javafx-controls</artifactId>-->
+            <!--<version>11</version>-->
+        <!--</dependency>-->
 
 
         <!-- Private JARS -->
