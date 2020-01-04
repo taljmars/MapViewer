@@ -1,8 +1,7 @@
 package com.viewer_console;
 
-import com.gui.core.mapTree.internal.LayeredViewTreeImpl;
-import com.gui.core.mapViewer.LayeredViewMap;
-import com.gui.core.mapViewer.internal.LayeredViewMapImpl;
+import com.mapviewer.gui.core.mapTree.internal.LayeredViewTreeImpl;
+import com.mapviewer.gui.core.mapViewer.internal.LayeredViewMapImpl;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
