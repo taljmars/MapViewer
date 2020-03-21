@@ -37,7 +37,6 @@ public class LayerEditorView extends Pane implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("TALMA Layer Editor Box created");
-        AtomicBoolean atomicBoolean = new AtomicBoolean();
         layeredViewMap.getIsMapLayerEditing().addListener((observable, oldValue, newValue) -> {
             System.out.println("TALMA -> Layer Editor box should be shown ?" + newValue);
             root.setVisible(newValue);

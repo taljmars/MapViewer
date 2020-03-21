@@ -85,29 +85,51 @@
             <version>1.1.0.Final</version>
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>org.controlsfx</groupId>-->
+<!--            <artifactId>controlsfx</artifactId>-->
+<!--            <version>11.0.0</version>-->
+<!--        </dependency>-->
+
         <dependency>
-            <groupId>org.controlsfx</groupId>
-            <artifactId>controlsfx</artifactId>
-            <version>8.40.12</version>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3.2</version>
         </dependency>
 
-        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.openjfx/javafx-controls &ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>org.openjfx</groupId>-->
-            <!--<artifactId>javafx-controls</artifactId>-->
-            <!--<version>11</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-swing</artifactId>
+            <version>11</version>
+        </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-fxml -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>11</version>
+        </dependency>
 
-        <!-- Private JARS -->
+        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-controls -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>11</version>
+        </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>com.oracle</groupId>-->
-            <!--<artifactId>javafx</artifactId>-->
-            <!--<version>RELEASE</version>-->
-            <!--<scope>system</scope>-->
-            <!--<systemPath>${java.home}/../../../../local/jdk1.8.0_121/jre/lib/ext/jfxrt.jar</systemPath>-->
-        <!--</dependency>-->
+        <!-- https://mvnrepository.com/artifact/com.javafx/scenario -->
+<!--        <dependency>-->
+<!--            <groupId>com.javafx</groupId>-->
+<!--            <artifactId>scenario</artifactId>-->
+<!--            <version>1.0.1</version>-->
+<!--        </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-base -->
+<!--        <dependency>-->
+<!--            <groupId>org.openjfx</groupId>-->
+<!--            <artifactId>javafx-base</artifactId>-->
+<!--            <version>11</version>-->
+<!--        </dependency>-->
 
     </dependencies>
 

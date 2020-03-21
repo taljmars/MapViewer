@@ -9,10 +9,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.RadialGradient;
-import javafx.scene.paint.RadialGradientBuilder;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.CircleBuilder;
 import com.geo_tools.Coordinate;
 import javafx.scene.text.Text;
 
@@ -89,20 +87,18 @@ public class MapMarkerDot extends MapMarker {
 		if (imageView != null)
 			return;
 
-		this.sphere = CircleBuilder.create()
-				.centerX(this.radius)
-				.centerY(this.radius)
-				.radius(this.radius)
-				.cache(true)
-				.build();		
+		this.sphere = new Circle(this.radius, this.radius, this.radius);
+//		this.sphere.cacheProperty().setValue(true);
 
-		RadialGradient rgrad = RadialGradientBuilder.create()
-					.centerX(sphere.getCenterX() - sphere.getRadius() / 3)
-					.centerY(sphere.getCenterY() - sphere.getRadius() / 3)
-					.radius(sphere.getRadius())
-					.proportional(false)
-					.stops(new Stop(0.0, color), new Stop(1.0, Color.BLACK))
-					.build();
+		RadialGradient rgrad = new RadialGradient(0,0,
+				sphere.getCenterX() - sphere.getRadius() / 3,
+				sphere.getCenterY() - sphere.getRadius() / 3,
+				sphere.getRadius(),
+				false,
+				null,
+				new Stop(0.0, color),
+				new Stop(1.0, Color.BLACK)
+				);
 		
 		this.sphere.setFill(rgrad);		
 	}

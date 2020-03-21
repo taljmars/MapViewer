@@ -12,9 +12,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-@ComponentScan("com.gui.core.layers")
-@ComponentScan("com.gui.core.mapTree")
-@ComponentScan("com.gui.core.mapViewer")
+@ComponentScan("com.mapviewer.gui.core.layers")
+@ComponentScan("com.mapviewer.gui.core.mapTree")
+@ComponentScan("com.mapviewer.gui.core.mapViewer")
 @Import(MapView.class)
 @Configuration
 public class AppConfig {
