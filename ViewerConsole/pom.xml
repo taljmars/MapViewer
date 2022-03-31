@@ -12,7 +12,7 @@
     <artifactId>ViewerConsole</artifactId>
 
     <properties>
-        <spring-ver>4.3.3.RELEASE</spring-ver>
+        <spring-ver>5.3.18</spring-ver>
     </properties>
 
     <dependencies>
